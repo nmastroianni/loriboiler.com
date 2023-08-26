@@ -1,8 +1,18 @@
+import { Playfair_Display, Open_Sans } from 'next/font/google'
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { clsx } from 'clsx'
 
-const inter = Inter({ subsets: ['latin'] })
+const playfairDisplay = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-playfair-display',
+  display: 'swap',
+})
+const openSans = Open_Sans({
+  subsets: ['latin'],
+  variable: '--font-open-sans',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,7 +26,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={clsx(playfairDisplay.variable, openSans.variable)}>
+        {children}
+      </body>
     </html>
   )
 }
