@@ -3,6 +3,8 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { clsx } from 'clsx'
 import { createClient } from '@/prismicio'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 
 /**
  * Heading & Body fonts
@@ -44,9 +46,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={clsx(playfairDisplay.variable, openSans.variable)}>
-        <header>HEADER!!</header>
+        <Header />
         {children}
-        <footer>FOOTER!!</footer>
+        <Footer />
       </body>
     </html>
   )
