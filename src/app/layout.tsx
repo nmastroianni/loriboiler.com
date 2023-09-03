@@ -28,6 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const client = createClient()
   const settings = await client.getSingle('settings')
   return {
+    metadataBase: new URL('https://www.loriboiler.com'),
     title: settings.data.site_title || 'Lori Boiler',
     description:
       settings.data.meta_description ||
@@ -45,7 +46,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={clsx(playfairDisplay.variable, openSans.variable)}>
+      <body
+        className={clsx(
+          playfairDisplay.variable,
+          openSans.variable,
+          `font-opensans`,
+        )}
+      >
         <Header />
         {children}
         <Footer />

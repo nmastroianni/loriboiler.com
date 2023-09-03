@@ -10,7 +10,7 @@ const config: Config = {
     extend: {
       fontFamily: {
         playfair: ['var(--font-playfair-display)'],
-        sans: ['var(--font-open-sans)'],
+        opensans: ['var(--font-open-sans)'],
       },
     },
   },
