@@ -9,8 +9,10 @@
 					{
 						"type": "heading1",
 						"content": {
-							"text": "Noted"
-						}
+							"text": "Mortgages Made Simple",
+							"spans": []
+						},
+						"direction": "ltr"
 					}
 				]
 			},

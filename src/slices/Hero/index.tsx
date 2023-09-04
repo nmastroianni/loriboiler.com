@@ -1,4 +1,4 @@
-import { Content } from '@prismicio/client'
+import { Content, isFilled } from '@prismicio/client'
 import { SliceComponentProps } from '@prismicio/react'
 import Section from '@/components/Section'
 import { cn } from '@/utils/cn'
@@ -19,16 +19,16 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
     <Section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="h-screen"
+      className="lg:h-[calc(100vh-161px)] relative"
     >
       <div
-        className={cn('flex justify-end items-center', {
-          'justify-start': slice.primary.image_location,
+        className={cn('flex justify-center lg:justify-end items-center', {
+          'lg:justify-start': slice.primary.image_location,
         })}
       >
         <div
           className={cn(
-            'absolute inset-0 z-[-1] bg-gradient-to-b from-[#ffffff55] via-color-base to-color-base lg:bg-gradient-to-l lg:from-transparent lg:via-color-base lg:to-color-base',
+            'absolute inset-0 z-[-1] bg-gradient-to-b from-color-accent via-color-base to-color-base lg:bg-gradient-to-l lg:from-transparent lg:via-color-base lg:to-color-base',
             {
               'lg:bg-gradient-to-r lg:from-transparent lg:via-color-base lg:to-color-base':
                 !slice.primary.image_location,
@@ -40,18 +40,23 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
           fallbackAlt=""
           fill
           sizes="100vw"
-          className="z-[-2] object-cover"
+          className="z-[-2] object-cover hidden lg:block"
         />
-        <div className="lg:w-1/2 grid">
-          <PrismicRichText field={slice.primary.heading} />
-          <PrismicRichText field={slice.primary.description} />
-          <Button
-            field={slice.primary.button_link}
-            color="primary"
-            className="place-self-center my-6"
-          >
-            {slice.primary.button_text}
-          </Button>
+        <div className="lg:w-1/2">
+          <div className="max-w-lg mx-auto grid">
+            <PrismicRichText field={slice.primary.heading} />
+            <PrismicRichText field={slice.primary.description} />
+            {isFilled.link(slice.primary.button_link) &&
+              isFilled.keyText(slice.primary.button_text) && (
+                <Button
+                  field={slice.primary.button_link}
+                  color="primary"
+                  className="place-self-center my-6"
+                >
+                  {slice.primary.button_text}
+                </Button>
+              )}
+          </div>
         </div>
       </div>
     </Section>

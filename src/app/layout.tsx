@@ -51,7 +51,7 @@ export default function RootLayout({
         className={clsx(
           playfairDisplay.variable,
           openSans.variable,
-          `font-opensans`,
+          `font-opensans text-color-neutral`,
         )}
       >
         <Header />

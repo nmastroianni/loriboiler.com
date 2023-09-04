@@ -22,6 +22,37 @@ const defaultComponents: JSXMapSerializer = {
       </Heading>
     )
   },
+  heading3: ({ children }) => {
+    return (
+      <Heading as="h3" size="5xl">
+        {children}
+      </Heading>
+    )
+  },
+  heading4: ({ children }) => {
+    return (
+      <Heading as="h4" size="4xl">
+        {children}
+      </Heading>
+    )
+  },
+  heading5: ({ children }) => {
+    return (
+      <Heading as="h5" size="3xl">
+        {children}
+      </Heading>
+    )
+  },
+  heading6: ({ children }) => {
+    return (
+      <Heading as="h6" size="2xl">
+        {children}
+      </Heading>
+    )
+  },
+  paragraph: ({ children }) => {
+    return <p className="my-6 lg:my-10 text-color-neutral">{children}</p>
+  },
 }
 
 export const PrismicRichText = function PrismicRichText<
