@@ -16,6 +16,13 @@
           "type": "StructuredText",
           "config": {
             "label": "Heading",
+            "labels": [
+              "text-color-primary",
+              "text-color-secondary",
+              "text-color-accent",
+              "text-color-neutral",
+              "text-color-base"
+            ],
             "placeholder": "Hero heading",
             "allowTargetBlank": true,
             "single": "heading1"

@@ -9,10 +9,8 @@
 					{
 						"type": "heading1",
 						"content": {
-							"text": "Mortgages Made Simple",
-							"spans": []
-						},
-						"direction": "ltr"
+							"text": "Noted"
+						}
 					}
 				]
 			},
@@ -47,6 +45,7 @@
 					}
 				},
 				"credits": null,
+				"alt": null,
 				"__TYPE__": "ImageContent",
 				"thumbnails": {}
 			},

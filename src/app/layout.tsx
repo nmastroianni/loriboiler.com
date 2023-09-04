@@ -1,8 +1,9 @@
 import { Playfair_Display, Open_Sans } from 'next/font/google'
 import './globals.css'
 import type { Metadata } from 'next'
+import { PrismicPreview } from '@prismicio/next'
 import { clsx } from 'clsx'
-import { createClient } from '@/prismicio'
+import { createClient, repositoryName } from '@/prismicio'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
@@ -56,6 +57,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <PrismicPreview repositoryName={repositoryName} />
       </body>
     </html>
   )
