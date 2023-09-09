@@ -51,7 +51,11 @@ const defaultComponents: JSXMapSerializer = {
     )
   },
   paragraph: ({ children }) => {
-    return <p className="my-6 lg:my-10 text-color-neutral">{children}</p>
+    return (
+      <p className="my-6 lg:my-10 text-color-neutral prose lg:prose-lg xl:prose-xl">
+        {children}
+      </p>
+    )
   },
 }
 

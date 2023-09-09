@@ -22,6 +22,12 @@
           "choices": {
             "hero": {
               "type": "SharedSlice"
+            },
+            "image_with_text": {
+              "type": "SharedSlice"
+            },
+            "steps": {
+              "type": "SharedSlice"
             }
           }
         }

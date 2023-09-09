@@ -14,7 +14,7 @@ export type HeroProps = SliceComponentProps<Content.HeroSlice>
 /**
  * Component for "Hero" Slices.
  */
-const Hero = ({ slice }: HeroProps): JSX.Element => {
+const Hero = ({ slice, index }: HeroProps): JSX.Element => {
   return (
     <Section
       data-slice-type={slice.slice_type}
@@ -41,6 +41,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
           fill
           sizes="100vw"
           className="z-[-2] object-cover hidden lg:block"
+          priority={index === 0}
         />
         <div className="lg:w-1/2">
           <div className="max-w-lg mx-auto grid">

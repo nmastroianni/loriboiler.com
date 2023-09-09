@@ -19,6 +19,7 @@ export default async function Header() {
       <div className="flex justify-between items-center">
         <Link href="/">
           <Logo className="h-[65px] lg:h-[113px] text-color-primary" />
+          <span className="sr-only">Return to Homepage</span>
         </Link>
         <HiMenu className="text-color-secondary h-12 w-12 lg:hidden" />
         {navigation.length && (

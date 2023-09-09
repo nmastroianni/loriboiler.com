@@ -4,7 +4,10 @@ import type * as prismic from '@prismicio/client'
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] }
 
-type HomepageDocumentDataSlicesSlice = HeroSlice
+type HomepageDocumentDataSlicesSlice =
+  | HeroSlice
+  | ImageWithTextSlice
+  | StepsSlice
 
 /**
  * Content for Homepage documents
@@ -266,6 +269,179 @@ type HeroSliceVariation = HeroSliceDefault
  */
 export type HeroSlice = prismic.SharedSlice<'hero', HeroSliceVariation>
 
+/**
+ * Primary content in *ImageWithText → Primary*
+ */
+export interface ImageWithTextSliceDefaultPrimary {
+  /**
+   * Image field in *ImageWithText → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image_with_text.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>
+
+  /**
+   * Heading field in *ImageWithText → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: Optional heading for section
+   * - **API ID Path**: image_with_text.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField
+
+  /**
+   * Text field in *ImageWithText → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image_with_text.primary.text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField
+
+  /**
+   * Image Location field in *ImageWithText → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: image_with_text.primary.image_location
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  image_location: prismic.BooleanField
+}
+
+/**
+ * Default variation for ImageWithText Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ImageWithTextSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<ImageWithTextSliceDefaultPrimary>,
+  never
+>
+
+/**
+ * Slice variation for *ImageWithText*
+ */
+type ImageWithTextSliceVariation = ImageWithTextSliceDefault
+
+/**
+ * ImageWithText Shared Slice
+ *
+ * - **API ID**: `image_with_text`
+ * - **Description**: ImageWithText
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ImageWithTextSlice = prismic.SharedSlice<
+  'image_with_text',
+  ImageWithTextSliceVariation
+>
+
+/**
+ * Primary content in *Steps → Primary*
+ */
+export interface StepsSliceDefaultPrimary {
+  /**
+   * Background Image field in *Steps → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: steps.primary.background_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  background_image: prismic.ImageField<never>
+}
+
+/**
+ * Primary content in *Steps → Items*
+ */
+export interface StepsSliceDefaultItem {
+  /**
+   * Step Sequence Override field in *Steps → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Optionally override numbers
+   * - **API ID Path**: steps.items[].step_sequence_override
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  step_sequence_override: prismic.KeyTextField
+
+  /**
+   * Step Title field in *Steps → Items*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: steps.items[].step_title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  step_title: prismic.TitleField
+
+  /**
+   * Step Text field in *Steps → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: steps.items[].step_text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  step_text: prismic.RichTextField
+
+  /**
+   * Link field in *Steps → Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: steps.items[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField
+
+  /**
+   * Link Text field in *Steps → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: steps.items[].link_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  link_text: prismic.KeyTextField
+}
+
+/**
+ * Default variation for Steps Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type StepsSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<StepsSliceDefaultPrimary>,
+  Simplify<StepsSliceDefaultItem>
+>
+
+/**
+ * Slice variation for *Steps*
+ */
+type StepsSliceVariation = StepsSliceDefault
+
+/**
+ * Steps Shared Slice
+ *
+ * - **API ID**: `steps`
+ * - **Description**: Steps
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type StepsSlice = prismic.SharedSlice<'steps', StepsSliceVariation>
+
 declare module '@prismicio/client' {
   interface CreateClient {
     (
@@ -287,6 +463,15 @@ declare module '@prismicio/client' {
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
+      ImageWithTextSlice,
+      ImageWithTextSliceDefaultPrimary,
+      ImageWithTextSliceVariation,
+      ImageWithTextSliceDefault,
+      StepsSlice,
+      StepsSliceDefaultPrimary,
+      StepsSliceDefaultItem,
+      StepsSliceVariation,
+      StepsSliceDefault,
     }
   }
 }
