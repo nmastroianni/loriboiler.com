@@ -1,0 +1,47 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Airplane"
+						}
+					}
+				]
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Consequat pariatur sit nulla voluptate eu qui adipisicing elit laboris aliquip ipsum. Labore esse velit id sit elit ea consequat enim ipsum eu ut."
+						}
+					}
+				]
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": [
+					[
+						"testimonial",
+						{
+							"__TYPE__": "LinkContent",
+							"value": {
+								"__TYPE__": "DocumentLink",
+								"id": "mock_document_id"
+							}
+						}
+					]
+				]
+			}
+		]
+	}
+]

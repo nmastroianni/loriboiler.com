@@ -8,6 +8,7 @@ type HomepageDocumentDataSlicesSlice =
   | HeroSlice
   | ImageWithTextSlice
   | StepsSlice
+  | CarouselSlice
 
 /**
  * Content for Homepage documents
@@ -174,7 +175,134 @@ export type SettingsDocument<Lang extends string = string> =
     Lang
   >
 
-export type AllDocumentTypes = HomepageDocument | SettingsDocument
+/**
+ * Content for Testimonial documents
+ */
+interface TestimonialDocumentData {
+  /**
+   * Attribution field in *Testimonial*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: testimonial.attribution
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  attribution: prismic.KeyTextField
+
+  /**
+   * Text field in *Testimonial*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: testimonial.text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField
+
+  /**
+   * Image field in *Testimonial*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: testimonial.image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>
+}
+
+/**
+ * Testimonial document from Prismic
+ *
+ * - **API ID**: `testimonial`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type TestimonialDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<TestimonialDocumentData>,
+    'testimonial',
+    Lang
+  >
+
+export type AllDocumentTypes =
+  | HomepageDocument
+  | SettingsDocument
+  | TestimonialDocument
+
+/**
+ * Primary content in *Carousel → Primary*
+ */
+export interface CarouselSliceDefaultPrimary {
+  /**
+   * Heading field in *Carousel → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: Optional section heading
+   * - **API ID Path**: carousel.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField
+
+  /**
+   * Description field in *Carousel → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Option section description
+   * - **API ID Path**: carousel.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField
+}
+
+/**
+ * Primary content in *Carousel → Items*
+ */
+export interface CarouselSliceDefaultItem {
+  /**
+   * Testimonial field in *Carousel → Items*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: carousel.items[].testimonial
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  testimonial: prismic.ContentRelationshipField<'testimonial'>
+}
+
+/**
+ * Default variation for Carousel Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CarouselSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<CarouselSliceDefaultPrimary>,
+  Simplify<CarouselSliceDefaultItem>
+>
+
+/**
+ * Slice variation for *Carousel*
+ */
+type CarouselSliceVariation = CarouselSliceDefault
+
+/**
+ * Carousel Shared Slice
+ *
+ * - **API ID**: `carousel`
+ * - **Description**: Carousel
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CarouselSlice = prismic.SharedSlice<
+  'carousel',
+  CarouselSliceVariation
+>
 
 /**
  * Primary content in *Hero → Primary*
@@ -458,7 +586,14 @@ declare module '@prismicio/client' {
       SettingsDocument,
       SettingsDocumentData,
       SettingsDocumentDataNavigationItem,
+      TestimonialDocument,
+      TestimonialDocumentData,
       AllDocumentTypes,
+      CarouselSlice,
+      CarouselSliceDefaultPrimary,
+      CarouselSliceDefaultItem,
+      CarouselSliceVariation,
+      CarouselSliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
