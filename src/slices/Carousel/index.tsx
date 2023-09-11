@@ -1,8 +1,9 @@
 import { createClient } from '@/prismicio'
 import { Content, isFilled } from '@prismicio/client'
-import { SliceComponentProps } from '@prismicio/react'
+import { PrismicRichText, SliceComponentProps } from '@prismicio/react'
 import Slider from '@/components/Slider'
 import { TestimonialDocument } from '../../../prismicio-types'
+import Section from '@/components/Section'
 
 /**
  * Props for `Carousel`.
@@ -31,10 +32,9 @@ const Carousel = async ({ slice }: CarouselProps): Promise<JSX.Element> => {
     (testimonial): testimonial is TestimonialDocument => !!testimonial,
   )
   return (
-    <>
-      <Slider testimonials={filteredTestimonials} />
-      Placeholder component for carousel (variation: {slice.variation}) Slices
-    </>
+    <Section width="xl">
+      <Slider content={filteredTestimonials} {...slice} />
+    </Section>
   )
 }
 

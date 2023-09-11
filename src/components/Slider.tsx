@@ -1,15 +1,49 @@
 'use client'
 import Section from '@/components/Section'
-import { TestimonialDocument } from '../../prismicio-types'
+import { CarouselSlice, TestimonialDocument } from '../../prismicio-types'
+import { motion, useTransform, useScroll } from 'framer-motion'
+import { useRef } from 'react'
+import { FaQuoteLeft } from 'react-icons/fa'
+import { PrismicNextImage } from '@prismicio/next'
+import { PrismicRichText } from '@/components/PrismicRichText'
 
-interface SliderProps {
-  testimonials: Array<TestimonialDocument>
+interface SliderProps extends CarouselSlice {
+  content: Array<TestimonialDocument> | undefined
 }
 
-export default function Slider({ testimonials }: SliderProps) {
+export default function Slider({ content, primary }: SliderProps) {
+  const targetRef = useRef<HTMLDivElement | null>(null)
+  const { scrollYProgress } = useScroll({ target: targetRef })
+  const x = useTransform(scrollYProgress, [0, 1], ['5%', '-80%'])
   return (
-    <Section>
-      <h2>SLIDER COMPONENT</h2>
-    </Section>
+    <div ref={targetRef} className="relative h-[300vh]">
+      <div className="h-screen sticky top-0 flex items-center overflow-hidden">
+        <div className="top-16 absolute left-1/2 -translate-x-1/2 w-full text-center">
+          <PrismicRichText field={primary.heading} />
+        </div>
+        <motion.div style={{ x }} className="flex gap-4">
+          {content &&
+            content.length > 0 &&
+            content.map((item, i) => {
+              return (
+                <div
+                  key={item.id}
+                  className="grid gap-x-4 grid-cols-3 w-[360px] lg:w-[900px]"
+                >
+                  <div className="col-span-1">
+                    <PrismicNextImage
+                      field={item.data.image}
+                      className="rounded-l-lg"
+                    />
+                  </div>
+                  <blockquote className="col-span-2">
+                    <PrismicRichText field={item.data.text} />
+                  </blockquote>
+                </div>
+              )
+            })}
+        </motion.div>
+      </div>
+    </div>
   )
 }
