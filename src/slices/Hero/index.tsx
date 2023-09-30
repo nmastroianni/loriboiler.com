@@ -19,10 +19,10 @@ const Hero = ({ slice, index }: HeroProps): JSX.Element => {
     <Section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="lg:h-[calc(100vh-161px)] relative"
+      className="relative lg:h-[calc(100vh-161px)]"
     >
       <div
-        className={cn('flex justify-center lg:justify-end items-center', {
+        className={cn('flex items-center justify-center lg:justify-end', {
           'lg:justify-start': slice.primary.image_location,
         })}
       >
@@ -40,11 +40,11 @@ const Hero = ({ slice, index }: HeroProps): JSX.Element => {
           fallbackAlt=""
           fill
           sizes="100vw"
-          className="z-[-2] object-cover hidden lg:block"
+          className="z-[-2] hidden object-cover lg:block"
           priority={index === 0}
         />
         <div className="lg:w-1/2">
-          <div className="max-w-lg mx-auto grid">
+          <div className="mx-auto grid max-w-lg">
             <PrismicRichText field={slice.primary.heading} />
             <PrismicRichText field={slice.primary.description} />
             {isFilled.link(slice.primary.button_link) &&
@@ -52,7 +52,7 @@ const Hero = ({ slice, index }: HeroProps): JSX.Element => {
                 <Button
                   field={slice.primary.button_link}
                   color="primary"
-                  className="place-self-center my-6"
+                  className="my-6 place-self-center"
                 >
                   {slice.primary.button_text}
                 </Button>

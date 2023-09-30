@@ -18,13 +18,13 @@ export default function Section({
   return (
     <Comp
       className={cn(
-        'px-4 py-10 md:py-14 md:px-6 lg:py-16 flex items-center',
+        'flex items-center px-4 py-10 md:px-6 md:py-14 lg:py-16',
         className,
       )}
       {...restProps}
     >
       <div
-        className={cn('w-full mx-auto', {
+        className={cn('mx-auto w-full', {
           'w-full': width === 'full',
           'max-w-screen-2xl': width === '2xl',
           'max-w-screen-xl': width === 'xl',

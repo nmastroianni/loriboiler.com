@@ -1,61 +1,61 @@
 [
-	{
-		"__TYPE__": "SharedSliceContent",
-		"variation": "default",
-		"primary": {
-			"image": {
-				"origin": {
-					"id": "5rQG1mib90I",
-					"url": "https://images.unsplash.com/photo-1592621385645-e41659e8aabe?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHw2fHxicnVuZXR0ZSUyMHBvcnRyYWl0fGVufDB8fHx8MTY5NDI3ODg0M3ww&ixlib=rb-4.0.3&q=85",
-					"width": 2884,
-					"height": 4253
-				},
-				"url": "https://images.unsplash.com/photo-1592621385645-e41659e8aabe?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHw2fHxicnVuZXR0ZSUyMHBvcnRyYWl0fGVufDB8fHx8MTY5NDI3ODg0M3ww&ixlib=rb-4.0.3&q=85",
-				"width": 2884,
-				"height": 4253,
-				"edit": {
-					"background": "transparent",
-					"zoom": 1,
-					"crop": {
-						"x": 0,
-						"y": 0
-					}
-				},
-				"credits": null,
-				"__TYPE__": "ImageContent",
-				"thumbnails": {}
-			},
-			"heading": {
-				"__TYPE__": "StructuredTextContent",
-				"value": [
-					{
-						"type": "heading2",
-						"content": {
-							"text": "About Me",
-							"spans": []
-						},
-						"direction": "ltr"
-					}
-				]
-			},
-			"text": {
-				"__TYPE__": "StructuredTextContent",
-				"value": [
-					{
-						"type": "paragraph",
-						"content": {
-							"text": "I began my mortgage career over thirty years ago. My depth of expertise allows me to guide clients to optimal financing decisions. And my tireless drive enables me to navigate clients through the entire mortgage process efficiently.\n\nThat's why my clients tend to become raving fans who recommend me to family, friends, and coworkers after working with me. Don't just take my word for it - read my customer reviews and see for yourself how I've helped countless buyers realize the dream of homeownership. My dedication to client service and relentless work ethic set me apart in the mortgage industry. I'm ready to leverage my experience and passion to help you secure the perfect financing for your new home.",
-							"spans": []
-						},
-						"direction": "ltr"
-					}
-				]
-			},
-			"image_location": {
-				"__TYPE__": "BooleanContent",
-				"value": true
-			}
-		},
-		"items": []
-	}
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "image": {
+        "origin": {
+          "id": "5rQG1mib90I",
+          "url": "https://images.unsplash.com/photo-1592621385645-e41659e8aabe?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHw2fHxicnVuZXR0ZSUyMHBvcnRyYWl0fGVufDB8fHx8MTY5NDI3ODg0M3ww&ixlib=rb-4.0.3&q=85",
+          "width": 2884,
+          "height": 4253
+        },
+        "url": "https://images.unsplash.com/photo-1592621385645-e41659e8aabe?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHw2fHxicnVuZXR0ZSUyMHBvcnRyYWl0fGVufDB8fHx8MTY5NDI3ODg0M3ww&ixlib=rb-4.0.3&q=85",
+        "width": 2884,
+        "height": 4253,
+        "edit": {
+          "background": "transparent",
+          "zoom": 1,
+          "crop": {
+            "x": 0,
+            "y": 0
+          }
+        },
+        "credits": null,
+        "__TYPE__": "ImageContent",
+        "thumbnails": {}
+      },
+      "heading": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "heading2",
+            "content": {
+              "text": "About Me",
+              "spans": []
+            },
+            "direction": "ltr"
+          }
+        ]
+      },
+      "text": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "I began my mortgage career over thirty years ago. My depth of expertise allows me to guide clients to optimal financing decisions. And my tireless drive enables me to navigate clients through the entire mortgage process efficiently.\n\nThat's why my clients tend to become raving fans who recommend me to family, friends, and coworkers after working with me. Don't just take my word for it - read my customer reviews and see for yourself how I've helped countless buyers realize the dream of homeownership. My dedication to client service and relentless work ethic set me apart in the mortgage industry. I'm ready to leverage my experience and passion to help you secure the perfect financing for your new home.",
+              "spans": []
+            },
+            "direction": "ltr"
+          }
+        ]
+      },
+      "image_location": {
+        "__TYPE__": "BooleanContent",
+        "value": true
+      }
+    },
+    "items": []
+  }
 ]

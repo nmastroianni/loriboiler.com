@@ -14,16 +14,16 @@ export default async function Header() {
     <Section
       as="header"
       width="lg"
-      className="py-12 lg:py-6 justify-start shadow-sm shadow-color-accent"
+      className="justify-start py-12 shadow-sm shadow-color-accent lg:py-6"
     >
-      <div className="flex justify-between items-center">
+      <div className="flex items-center justify-between">
         <Link href="/">
-          <Logo className="h-[65px] lg:h-[113px] text-color-primary" />
+          <Logo className="h-[65px] text-color-primary lg:h-[113px]" />
           <span className="sr-only">Return to Homepage</span>
         </Link>
-        <HiMenu className="text-color-secondary h-12 w-12 lg:hidden" />
+        <HiMenu className="h-12 w-12 text-color-secondary lg:hidden" />
         {navigation.length && (
-          <nav className="hidden lg:block text-xl">
+          <nav className="hidden text-xl lg:block">
             <ul className="flex gap-x-12">
               {navigation.map(({ label, link }) => (
                 <li key={label}>

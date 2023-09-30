@@ -17,8 +17,8 @@ export default function Slider({ content, primary }: SliderProps) {
   const x = useTransform(scrollYProgress, [0, 1], ['5%', '-95%'])
   return (
     <div ref={targetRef} className="relative h-[300vh]">
-      <div className="h-screen sticky top-0 flex items-center overflow-hidden">
-        <div className="top-16 absolute left-1/2 -translate-x-1/2 w-full text-center">
+      <div className="sticky top-0 flex h-screen items-center overflow-hidden">
+        <div className="absolute left-1/2 top-16 w-full -translate-x-1/2 text-center">
           <PrismicRichText field={primary.heading} />
         </div>
         <motion.div style={{ x }} className="flex gap-8">
@@ -28,16 +28,16 @@ export default function Slider({ content, primary }: SliderProps) {
               return (
                 <div
                   key={item.id}
-                  className="grid gap-x-4 lg:grid-cols-3 w-[300px] lg:w-[900px] shadow border rounded-lg"
+                  className="grid w-[300px] gap-x-4 rounded-lg border shadow lg:w-[900px] lg:grid-cols-3"
                 >
-                  <div className="lg:block col-span-1 hidden">
+                  <div className="col-span-1 hidden lg:block">
                     <PrismicNextImage
                       field={item.data.image}
                       className="lg:rounded-l-lg"
                     />
                   </div>
-                  <blockquote className="col-span-2 relative flex flex-col justify-between prose lg:prose-lg xl:prose-xl p-6">
-                    <FaQuoteLeft className="w-4 h-4 text-color-primary lg:w-12 lg:h-12" />
+                  <blockquote className="prose relative col-span-2 flex flex-col justify-between p-6 lg:prose-lg xl:prose-xl">
+                    <FaQuoteLeft className="h-4 w-4 text-color-primary lg:h-12 lg:w-12" />
                     <PrismicRichText field={item.data.text} />
                     <footer>{'-' + item.data.attribution}</footer>
                   </blockquote>

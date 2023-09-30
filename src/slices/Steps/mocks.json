@@ -1,167 +1,167 @@
 [
-	{
-		"__TYPE__": "SharedSliceContent",
-		"variation": "default",
-		"primary": {
-			"background_image": {
-				"origin": {
-					"id": "bJhT_8nbUA0",
-					"url": "https://images.unsplash.com/photo-1502101872923-d48509bff386?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHw1fHxzdGVwc3xlbnwwfHx8fDE2OTQyNzk5MTZ8MA&ixlib=rb-4.0.3&q=85",
-					"width": 3600,
-					"height": 2025
-				},
-				"url": "https://images.unsplash.com/photo-1502101872923-d48509bff386?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHw1fHxzdGVwc3xlbnwwfHx8fDE2OTQyNzk5MTZ8MA&ixlib=rb-4.0.3&q=85",
-				"width": 3600,
-				"height": 2025,
-				"edit": {
-					"background": "transparent",
-					"zoom": 1,
-					"crop": {
-						"x": 0,
-						"y": 0
-					}
-				},
-				"credits": null,
-				"alt": null,
-				"__TYPE__": "ImageContent",
-				"thumbnails": {}
-			}
-		},
-		"items": [
-			{
-				"__TYPE__": "GroupItemContent",
-				"value": [
-					[
-						"step_title",
-						{
-							"__TYPE__": "StructuredTextContent",
-							"value": [
-								{
-									"type": "heading3",
-									"content": {
-										"text": "Step Slice",
-										"spans": []
-									},
-									"direction": "ltr"
-								}
-							]
-						}
-					],
-					[
-						"step_text",
-						{
-							"__TYPE__": "StructuredTextContent",
-							"value": [
-								{
-									"type": "paragraph",
-									"content": {
-										"text": "Ea velit fugiat dolore nulla consectetur. Ipsum qui aliquip eiusmod ad ad qui labore excepteur amet non voluptate sunt."
-									}
-								}
-							]
-						}
-					],
-					[
-						"link_text",
-						{
-							"__TYPE__": "FieldContent",
-							"type": "Text",
-							"value": "Start Step 1 Now"
-						}
-					],
-					[
-						"link",
-						{
-							"__TYPE__": "LinkContent",
-							"value": {
-								"__TYPE__": "ExternalLink",
-								"url": "https://google.com"
-							}
-						}
-					]
-				]
-			},
-			{
-				"__TYPE__": "GroupItemContent",
-				"value": [
-					[
-						"step_text",
-						{
-							"__TYPE__": "StructuredTextContent",
-							"value": [
-								{
-									"type": "paragraph",
-									"content": {
-										"text": "Ea sunt ullamco consequat esse culpa qui tempor labore culpa tempor nisi ad. Ipsum occaecat ex veniam adipisicing aliquip id irure deserunt do consequat irure. Labore eiusmod amet sint deserunt cillum."
-									}
-								}
-							]
-						}
-					],
-					[
-						"link",
-						{
-							"__TYPE__": "LinkContent",
-							"value": {
-								"__TYPE__": "ExternalLink",
-								"url": "https://google.com",
-								"target": ""
-							}
-						}
-					],
-					[
-						"step_title",
-						{
-							"__TYPE__": "StructuredTextContent",
-							"value": [
-								{
-									"type": "heading3",
-									"content": {
-										"text": " Be Sure To",
-										"spans": []
-									},
-									"direction": "ltr"
-								}
-							]
-						}
-					]
-				]
-			},
-			{
-				"__TYPE__": "GroupItemContent",
-				"value": [
-					[
-						"step_title",
-						{
-							"__TYPE__": "StructuredTextContent",
-							"value": [
-								{
-									"type": "heading3",
-									"content": {
-										"text": "Add Step Titles",
-										"spans": []
-									},
-									"direction": "ltr"
-								}
-							]
-						}
-					],
-					[
-						"step_text",
-						{
-							"__TYPE__": "StructuredTextContent",
-							"value": [
-								{
-									"type": "paragraph",
-									"content": {
-										"text": "Sint dolor magna culpa ad nulla officia ipsum duis sunt ad aliquip amet adipisicing laboris. Ea anim et quis officia nostrud minim amet eu irure ea ut commodo ex labore pariatur."
-									}
-								}
-							]
-						}
-					]
-				]
-			}
-		]
-	}
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "background_image": {
+        "origin": {
+          "id": "bJhT_8nbUA0",
+          "url": "https://images.unsplash.com/photo-1502101872923-d48509bff386?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHw1fHxzdGVwc3xlbnwwfHx8fDE2OTQyNzk5MTZ8MA&ixlib=rb-4.0.3&q=85",
+          "width": 3600,
+          "height": 2025
+        },
+        "url": "https://images.unsplash.com/photo-1502101872923-d48509bff386?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHw1fHxzdGVwc3xlbnwwfHx8fDE2OTQyNzk5MTZ8MA&ixlib=rb-4.0.3&q=85",
+        "width": 3600,
+        "height": 2025,
+        "edit": {
+          "background": "transparent",
+          "zoom": 1,
+          "crop": {
+            "x": 0,
+            "y": 0
+          }
+        },
+        "credits": null,
+        "alt": null,
+        "__TYPE__": "ImageContent",
+        "thumbnails": {}
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": [
+          [
+            "step_title",
+            {
+              "__TYPE__": "StructuredTextContent",
+              "value": [
+                {
+                  "type": "heading3",
+                  "content": {
+                    "text": "Step Slice",
+                    "spans": []
+                  },
+                  "direction": "ltr"
+                }
+              ]
+            }
+          ],
+          [
+            "step_text",
+            {
+              "__TYPE__": "StructuredTextContent",
+              "value": [
+                {
+                  "type": "paragraph",
+                  "content": {
+                    "text": "Ea velit fugiat dolore nulla consectetur. Ipsum qui aliquip eiusmod ad ad qui labore excepteur amet non voluptate sunt."
+                  }
+                }
+              ]
+            }
+          ],
+          [
+            "link_text",
+            {
+              "__TYPE__": "FieldContent",
+              "type": "Text",
+              "value": "Start Step 1 Now"
+            }
+          ],
+          [
+            "link",
+            {
+              "__TYPE__": "LinkContent",
+              "value": {
+                "__TYPE__": "ExternalLink",
+                "url": "https://google.com"
+              }
+            }
+          ]
+        ]
+      },
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": [
+          [
+            "step_text",
+            {
+              "__TYPE__": "StructuredTextContent",
+              "value": [
+                {
+                  "type": "paragraph",
+                  "content": {
+                    "text": "Ea sunt ullamco consequat esse culpa qui tempor labore culpa tempor nisi ad. Ipsum occaecat ex veniam adipisicing aliquip id irure deserunt do consequat irure. Labore eiusmod amet sint deserunt cillum."
+                  }
+                }
+              ]
+            }
+          ],
+          [
+            "link",
+            {
+              "__TYPE__": "LinkContent",
+              "value": {
+                "__TYPE__": "ExternalLink",
+                "url": "https://google.com",
+                "target": ""
+              }
+            }
+          ],
+          [
+            "step_title",
+            {
+              "__TYPE__": "StructuredTextContent",
+              "value": [
+                {
+                  "type": "heading3",
+                  "content": {
+                    "text": " Be Sure To",
+                    "spans": []
+                  },
+                  "direction": "ltr"
+                }
+              ]
+            }
+          ]
+        ]
+      },
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": [
+          [
+            "step_title",
+            {
+              "__TYPE__": "StructuredTextContent",
+              "value": [
+                {
+                  "type": "heading3",
+                  "content": {
+                    "text": "Add Step Titles",
+                    "spans": []
+                  },
+                  "direction": "ltr"
+                }
+              ]
+            }
+          ],
+          [
+            "step_text",
+            {
+              "__TYPE__": "StructuredTextContent",
+              "value": [
+                {
+                  "type": "paragraph",
+                  "content": {
+                    "text": "Sint dolor magna culpa ad nulla officia ipsum duis sunt ad aliquip amet adipisicing laboris. Ea anim et quis officia nostrud minim amet eu irure ea ut commodo ex labore pariatur."
+                  }
+                }
+              ]
+            }
+          ]
+        ]
+      }
+    ]
+  }
 ]

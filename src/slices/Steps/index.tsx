@@ -29,15 +29,15 @@ const Steps = ({ slice, index }: StepsProps): JSX.Element => {
         priority={index === 0}
       />
       {slice?.items?.length && (
-        <div className="grid lg:grid-cols-3 gap-6 py-12">
+        <div className="grid gap-6 py-12 lg:grid-cols-3">
           {slice.items.map((item, i) => {
             if (slice.id) {
               return (
                 <div
                   key={slice.id + i}
-                  className="border-1 bg-color-base bg-opacity-50 relative rounded-lg py-12 px-6 flex flex-col gap-y-8 shadow-sm shadow-color-neutral"
+                  className="border-1 relative flex flex-col gap-y-8 rounded-lg bg-color-base bg-opacity-50 px-6 py-12 shadow-sm shadow-color-neutral"
                 >
-                  <div className="w-16 h-16 bg-color-secondary text-color-base rounded-full absolute left-1/2 -translate-x-1/2 -top-10 flex justify-center items-center font-playfair text-4xl shadow-md shadow-color-secondary">
+                  <div className="absolute -top-10 left-1/2 flex h-16 w-16 -translate-x-1/2 items-center justify-center rounded-full bg-color-secondary font-playfair text-4xl text-color-base shadow-md shadow-color-secondary">
                     <span className="-mt-2">
                       {item.step_sequence_override
                         ? item.step_sequence_override
@@ -49,7 +49,7 @@ const Steps = ({ slice, index }: StepsProps): JSX.Element => {
                       field={item.step_title}
                       components={{
                         heading3: ({ children }) => (
-                          <h3 className="text-3xl font-playfair font-bold">
+                          <h3 className="font-playfair text-3xl font-bold">
                             {children}
                           </h3>
                         ),

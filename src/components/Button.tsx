@@ -9,7 +9,7 @@ export default function Button({
   return (
     <PrismicNextLink
       className={cn(
-        'px-6 py-4 font-bold lg:text-lg rounded-xl',
+        'rounded-xl px-6 py-4 font-bold lg:text-lg',
         {
           'bg-color-primary text-color-base': color === 'primary',
           'bg-color-secondary text-color-base': color === 'secondary',

@@ -20,10 +20,10 @@ const ImageWithText = ({ slice }: ImageWithTextProps): JSX.Element => {
       data-slice-variation={slice.variation}
       width="lg"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-12 items-center">
+      <div className="grid grid-cols-1 items-center lg:grid-cols-3 lg:gap-12">
         <PrismicNextImage
           field={slice.primary.image}
-          className={cn('rounded-lg my-6', {
+          className={cn('my-6 rounded-lg', {
             'lg:order-3': slice.primary.image_location,
           })}
           fallbackAlt=""
