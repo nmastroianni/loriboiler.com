@@ -24,7 +24,7 @@ const Steps = ({ slice, index }: StepsProps): JSX.Element => {
         field={slice.primary.background_image}
         fallbackAlt=""
         fill
-        sizes="100vw"
+        sizes="50vw"
         className="object-cover opacity-0 lg:opacity-100 hidden lg:block"
         priority={index === 0}
       />

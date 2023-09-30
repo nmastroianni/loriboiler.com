@@ -21,6 +21,14 @@ const Hero = ({ slice, index }: HeroProps): JSX.Element => {
       data-slice-variation={slice.variation}
       className="relative lg:h-[calc(100vh-161px)]"
     >
+      <PrismicNextImage
+        field={slice.primary.background_image}
+        fallbackAlt=""
+        fill
+        sizes="50vw"
+        className="z-[-2] hidden object-cover lg:block"
+        priority={index === 0}
+      />
       <div
         className={cn('flex items-center justify-center lg:justify-end', {
           'lg:justify-start': slice.primary.image_location,
@@ -35,14 +43,7 @@ const Hero = ({ slice, index }: HeroProps): JSX.Element => {
             },
           )}
         />
-        <PrismicNextImage
-          field={slice.primary.background_image}
-          fallbackAlt=""
-          fill
-          sizes="100vw"
-          className="z-[-2] hidden object-cover lg:block"
-          priority={index === 0}
-        />
+
         <div className="lg:w-1/2">
           <div className="mx-auto grid max-w-lg">
             <PrismicRichText field={slice.primary.heading} />

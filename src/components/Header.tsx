@@ -3,13 +3,12 @@ import { PrismicNextLink } from '@prismicio/next'
 import Link from 'next/link'
 import Section from '@/components/Section'
 import Logo from '@/components/Logo'
-import { HiMenu } from 'react-icons/hi'
+import MobileMenu from './MobileMenu'
 
 export default async function Header() {
   const client = createClient()
   const settings = await client.getSingle('settings')
   const { navigation } = settings.data
-
   return (
     <Section
       as="header"
@@ -21,7 +20,7 @@ export default async function Header() {
           <Logo className="h-[65px] text-color-primary lg:h-[113px]" />
           <span className="sr-only">Return to Homepage</span>
         </Link>
-        <HiMenu className="h-12 w-12 text-color-secondary lg:hidden" />
+        <MobileMenu navigation={navigation} />
         {navigation.length && (
           <nav className="hidden text-xl lg:block">
             <ul className="flex gap-x-12">
