@@ -4,7 +4,7 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type HomepageDocumentDataSlicesSlice = HeroSlice | ImageWithTextSlice | StepsSlice | CarouselSlice
+type HomepageDocumentDataSlicesSlice = ContentSlice | HeroSlice | ImageWithTextSlice | StepsSlice | CarouselSlice
 
 /**
  * Content for Homepage documents
@@ -75,7 +75,7 @@ interface HomepageDocumentData {
  */
 export type HomepageDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<HomepageDocumentData>, "homepage", Lang>;
 
-type PageDocumentDataSlicesSlice = CarouselSlice | ImageWithTextSlice | HeroSlice
+type PageDocumentDataSlicesSlice = ContentSlice | CarouselSlice | ImageWithTextSlice | HeroSlice
 
 /**
  * Content for Page documents
@@ -344,6 +344,44 @@ type CarouselSliceVariation = CarouselSliceDefault
  * - **Documentation**: https://prismic.io/docs/slice
  */
 export type CarouselSlice = prismic.SharedSlice<"carousel", CarouselSliceVariation>;
+
+/**
+ * Primary content in *Content → Primary*
+ */
+export interface ContentSliceDefaultPrimary {
+	/**
+	 * Content field in *Content → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: content.primary.content
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	content: prismic.RichTextField;
+}
+
+/**
+ * Default variation for Content Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ContentSliceDefault = prismic.SharedSliceVariation<"default", Simplify<ContentSliceDefaultPrimary>, never>;
+
+/**
+ * Slice variation for *Content*
+ */
+type ContentSliceVariation = ContentSliceDefault
+
+/**
+ * Content Shared Slice
+ *
+ * - **API ID**: `content`
+ * - **Description**: Content
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ContentSlice = prismic.SharedSlice<"content", ContentSliceVariation>;
 
 /**
  * Primary content in *Hero → Primary*
@@ -620,6 +658,10 @@ declare module "@prismicio/client" {
 			CarouselSliceDefaultItem,
 			CarouselSliceVariation,
 			CarouselSliceDefault,
+			ContentSlice,
+			ContentSliceDefaultPrimary,
+			ContentSliceVariation,
+			ContentSliceDefault,
 			HeroSlice,
 			HeroSliceDefaultPrimary,
 			HeroSliceVariation,

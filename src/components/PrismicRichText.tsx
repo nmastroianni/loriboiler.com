@@ -57,6 +57,16 @@ const defaultComponents: JSXMapSerializer = {
       </p>
     )
   },
+  embed: ({ node }) => {
+    return (
+      <div className="mx-auto max-w-screen-sm overflow-hidden rounded shadow-xl">
+        <div
+          className="aspect-h-9 aspect-w-16"
+          dangerouslySetInnerHTML={{ __html: node.oembed.html || '' }}
+        />
+      </div>
+    )
+  },
 }
 
 export const PrismicRichText = function PrismicRichText<

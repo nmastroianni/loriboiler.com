@@ -9,7 +9,7 @@ export default async function Footer() {
   return (
     <Section
       as="footer"
-      className={cn('bg-color-primary text-color-base lg:text-lg')}
+      className={cn('bg-color-neutral text-color-base lg:text-lg')}
     >
       <div className="mx-auto grid max-w-screen-lg place-items-center lg:grid-cols-2">
         <div>
@@ -20,7 +20,9 @@ export default async function Footer() {
           <p>&copy; {new Date().getFullYear()}</p>
         </div>
       </div>
-      <div className="my-4 text-center lg:my-8">Privacy</div>
+      <div className="my-4 text-center lg:my-8">
+        <Link href={'/privacy'}>Privacy</Link>
+      </div>
     </Section>
   )
 }
