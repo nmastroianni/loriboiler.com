@@ -11,11 +11,11 @@ export default async function Footer() {
       as="footer"
       className={cn('bg-color-neutral text-color-base lg:text-lg')}
     >
-      <div className="mx-auto grid max-w-screen-lg place-items-center lg:grid-cols-2">
+      <div className="mx-auto grid max-w-screen-lg place-items-center lg:grid-cols-2 gap-8">
         <div>
           <FaFacebook className="h-8 w-8 text-color-base" />
         </div>
-        <div>
+        <div className="text-center lg:text-left">
           <Link href="/">{settings.data.site_title}</Link>
           <p>&copy; {new Date().getFullYear()}</p>
         </div>

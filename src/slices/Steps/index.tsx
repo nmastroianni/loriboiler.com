@@ -18,18 +18,18 @@ const Steps = ({ slice, index }: StepsProps): JSX.Element => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       width="xl"
-      className="relative"
+      className="relative bg-color-neutral"
     >
       <PrismicNextImage
         field={slice.primary.background_image}
         fallbackAlt=""
         fill
         sizes="100vw"
-        className="z-[-2] object-cover lg:block"
+        className="object-cover opacity-0 lg:opacity-100 hidden lg:block"
         priority={index === 0}
       />
       {slice?.items?.length && (
-        <div className="grid gap-6 py-12 lg:grid-cols-3">
+        <div className="grid gap-y-16 lg:gap-y-0 lg:gap-x-6 py-12 lg:grid-cols-3">
           {slice.items.map((item, i) => {
             if (slice.id) {
               return (

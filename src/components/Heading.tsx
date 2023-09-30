@@ -17,7 +17,7 @@ export default function Heading({
 }: HeadingProps) {
   return (
     <Comp
-      className={cn('font-playfair font-bold', {
+      className={cn('font-playfair font-bold text-center lg:text-left', {
         'text-5xl leading-[4rem] lg:text-7xl lg:leading-[6rem]': size === '7xl',
         'text-4xl leading-[3rem] lg:text-6xl lg:leading-[5rem]': size === '6xl',
         'text-3xl leading-[2rem] lg:text-5xl lg:leading-[4rem]': size === '5xl',
