@@ -4,6 +4,7 @@ import { PrismicNextImage } from '@prismicio/next'
 import Section from '@/components/Section'
 import { PrismicRichText } from '@/components/PrismicRichText'
 import Button from '@/components/Button'
+import { cn } from '@/utils/cn'
 /**
  * Props for `Steps`.
  */
@@ -24,12 +25,19 @@ const Steps = ({ slice, index }: StepsProps): JSX.Element => {
         field={slice.primary.background_image}
         fallbackAlt=""
         fill
-        sizes="50vw"
+        sizes="70vw"
         className="object-cover opacity-0 lg:opacity-100 hidden lg:block"
         priority={index === 0}
       />
       {slice?.items?.length && (
-        <div className="grid gap-y-16 lg:gap-y-0 lg:gap-x-6 py-12 lg:grid-cols-3">
+        <div
+          className={cn('grid gap-y-16 lg:gap-x-6 py-12 ', {
+            'lg:grid-cols-3':
+              slice.items.length === 3 || slice.items.length === 6,
+            'lg:grid-cols-2':
+              slice.items.length === 2 || slice.items.length === 4,
+          })}
+        >
           {slice.items.map((item, i) => {
             if (slice.id) {
               return (

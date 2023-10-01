@@ -25,7 +25,7 @@ const Hero = ({ slice, index }: HeroProps): JSX.Element => {
         field={slice.primary.background_image}
         fallbackAlt=""
         fill
-        sizes="50vw"
+        sizes="80vw"
         className="z-[-2] hidden object-cover lg:block"
         priority={index === 0}
       />

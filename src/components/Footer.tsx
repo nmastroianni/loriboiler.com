@@ -16,12 +16,17 @@ export default async function Footer() {
           <FaFacebook className="h-8 w-8 text-color-base" />
         </div>
         <div className="text-center lg:text-left">
-          <Link href="/">{settings.data.site_title}</Link>
+          <Link href="/">{settings.data.site_title} NMLS #90059</Link>
           <p>&copy; {new Date().getFullYear()}</p>
         </div>
       </div>
-      <div className="my-4 text-center lg:my-8">
+      <div className="my-4 text-center lg:my-8 text-xs">
         <Link href={'/privacy'}>Privacy</Link>
+        <p className=" my-3">
+          This site does not allow for mortgage solicitation or loan
+          applications for any real estate transaction. It is for informational
+          purposes only.
+        </p>
       </div>
     </Section>
   )

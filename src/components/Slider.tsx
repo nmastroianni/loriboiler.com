@@ -6,6 +6,7 @@ import { useRef } from 'react'
 import { FaQuoteLeft } from 'react-icons/fa'
 import { PrismicNextImage } from '@prismicio/next'
 import { PrismicRichText } from '@/components/PrismicRichText'
+import Heading from './Heading'
 
 interface SliderProps extends CarouselSlice {
   content: Array<TestimonialDocument> | undefined
@@ -19,7 +20,16 @@ export default function Slider({ content, primary }: SliderProps) {
     <div ref={targetRef} className="relative h-[300vh]">
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
         <div className="absolute left-1/2 top-16 w-full -translate-x-1/2 text-center">
-          <PrismicRichText field={primary.heading} />
+          <PrismicRichText
+            field={primary.heading}
+            components={{
+              heading2: ({ children }) => (
+                <Heading as="h2" size="5xl" className="lg:text-center">
+                  {children}
+                </Heading>
+              ),
+            }}
+          />
         </div>
         <motion.div style={{ x }} className="flex gap-8">
           {content &&
