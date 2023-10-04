@@ -33,7 +33,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: settings.data.site_title || 'Lori Boiler',
     description:
       settings.data.meta_description ||
-      `Lori Boiler has been delivering friendly honest service you can depend on for over 30 years. Contact her today, and  you'll see`,
+      `Lori Boiler has been delivering friendly honest service you can depend on for over 30 years. Contact her today, and  you'll see.`,
     openGraph: {
       images: [settings.data.og_image.url || ''],
     },
