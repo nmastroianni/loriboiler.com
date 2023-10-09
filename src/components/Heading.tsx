@@ -1,4 +1,4 @@
-import { cn } from '@/utils/cn'
+import { cn } from '@/lib/utils/cn'
 import React, { HTMLAttributes } from 'react'
 
 interface HeadingProps extends HTMLAttributes<HTMLHeadElement> {

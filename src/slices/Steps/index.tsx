@@ -4,7 +4,7 @@ import { PrismicNextImage } from '@prismicio/next'
 import Section from '@/components/Section'
 import { PrismicRichText } from '@/components/PrismicRichText'
 import Button from '@/components/Button'
-import { cn } from '@/utils/cn'
+import { cn } from '@/lib/utils/cn'
 /**
  * Props for `Steps`.
  */

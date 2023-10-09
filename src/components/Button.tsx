@@ -1,5 +1,5 @@
 import { PrismicNextLink, PrismicNextLinkProps } from '@prismicio/next'
-import { cn } from '@/utils/cn'
+import { cn } from '@/lib/utils/cn'
 
 export default function Button({
   className,

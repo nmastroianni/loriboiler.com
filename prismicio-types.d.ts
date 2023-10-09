@@ -146,6 +146,99 @@ interface PageDocumentData {
  */
 export type PageDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
+type PostDocumentDataSlicesSlice = HeroSlice | ImageWithTextSlice | ContentSlice
+
+/**
+ * Content for Post documents
+ */
+interface PostDocumentData {
+	/**
+	 * Title field in *Post*
+	 *
+	 * - **Field Type**: Title
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: post.title
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	title: prismic.TitleField;
+	
+	/**
+	 * Date Published field in *Post*
+	 *
+	 * - **Field Type**: Date
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: post.date_published
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#date
+	 */
+	date_published: prismic.DateField;
+	
+	/**
+	 * Excerpt field in *Post*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: post.excerpt
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	excerpt: prismic.KeyTextField;
+	
+	/**
+	 * Slice Zone field in *Post*
+	 *
+	 * - **Field Type**: Slice Zone
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: post.slices[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#slices
+	 */
+	slices: prismic.SliceZone<PostDocumentDataSlicesSlice>;/**
+	 * Meta Description field in *Post*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A brief summary of the page
+	 * - **API ID Path**: post.meta_description
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	meta_description: prismic.KeyTextField;
+	
+	/**
+	 * Meta Image field in *Post*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: post.meta_image
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	meta_image: prismic.ImageField<never>;
+	
+	/**
+	 * Meta Title field in *Post*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A title of the page used for social media and search engines
+	 * - **API ID Path**: post.meta_title
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	meta_title: prismic.KeyTextField;
+}
+
+/**
+ * Post document from Prismic
+ *
+ * - **API ID**: `post`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type PostDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<Simplify<PostDocumentData>, "post", Lang>;
+
 /**
  * Item in *Settings → Navigation*
  */
@@ -280,7 +373,7 @@ interface TestimonialDocumentData {
  */
 export type TestimonialDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<Simplify<TestimonialDocumentData>, "testimonial", Lang>;
 
-export type AllDocumentTypes = HomepageDocument | PageDocument | SettingsDocument | TestimonialDocument;
+export type AllDocumentTypes = HomepageDocument | PageDocument | PostDocument | SettingsDocument | TestimonialDocument;
 
 /**
  * Primary content in *Carousel → Primary*
@@ -647,6 +740,9 @@ declare module "@prismicio/client" {
 			PageDocument,
 			PageDocumentData,
 			PageDocumentDataSlicesSlice,
+			PostDocument,
+			PostDocumentData,
+			PostDocumentDataSlicesSlice,
 			SettingsDocument,
 			SettingsDocumentData,
 			SettingsDocumentDataNavigationItem,

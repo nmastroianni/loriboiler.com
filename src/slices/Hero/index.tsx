@@ -1,7 +1,7 @@
 import { Content, isFilled } from '@prismicio/client'
 import { SliceComponentProps } from '@prismicio/react'
 import Section from '@/components/Section'
-import { cn } from '@/utils/cn'
+import { cn } from '@/lib/utils/cn'
 import { PrismicRichText } from '@/components/PrismicRichText'
 import { PrismicNextImage } from '@prismicio/next'
 import Button from '@/components/Button'

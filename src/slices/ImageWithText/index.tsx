@@ -3,7 +3,7 @@ import { SliceComponentProps } from '@prismicio/react'
 import { PrismicRichText } from '@/components/PrismicRichText'
 import Section from '@/components/Section'
 import { PrismicNextImage } from '@prismicio/next'
-import { cn } from '@/utils/cn'
+import { cn } from '@/lib/utils/cn'
 
 /**
  * Props for `ImageWithText`.

@@ -1,5 +1,5 @@
 import { createClient } from '@/prismicio'
-import { cn } from '@/utils/cn'
+import { cn } from '@/lib/utils/cn'
 import Section from './Section'
 import Link from 'next/link'
 import { FaFacebook } from 'react-icons/fa'

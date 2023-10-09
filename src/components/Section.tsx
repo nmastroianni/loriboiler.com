@@ -1,11 +1,11 @@
 import React from 'react'
-import { cn } from '@/utils/cn'
+import { cn } from '@/lib/utils/cn'
 
 type SectionProps = {
   as?: React.ElementType
   className?: string
   children: React.ReactNode
-  width?: 'full' | '2xl' | 'xl' | 'lg'
+  width?: 'full' | '2xl' | 'xl' | 'lg' | 'md'
 }
 
 export default function Section({
@@ -29,6 +29,7 @@ export default function Section({
           'max-w-screen-2xl': width === '2xl',
           'max-w-screen-xl': width === 'xl',
           'max-w-screen-lg': width === 'lg',
+          'max-w-screen-md': width === 'md',
         })}
       >
         {children}
