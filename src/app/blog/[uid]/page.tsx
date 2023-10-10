@@ -44,27 +44,31 @@ export default async function Page({ params }: { params: Params }) {
     '@graph': [
       {
         '@type': 'Person',
-        '@id': 'https://loriboiler.com/#lori',
+        '@id': `https://${settings.data.domain || `example.com`}/#lori`,
         name: 'Lori Boiler',
-        description: settings.data.meta_description || undefined,
+        description: settings.data.site_meta_description || undefined,
       },
       {
         '@type': 'WebSite',
-        '@id': 'https://loriboiler.com/#website',
+        '@id': `https://${settings.data.domain || `example.com`}/#site`,
         name: 'Lori Boiler',
-        url: 'https://loriboiler.com',
+        url: `https://${settings.data.domain || `example.com`}/`,
       },
       {
         '@type': 'BlogPosting',
-        '@id': `https://loriboiler.com${page.url}/#post`,
+        '@id': `https://${settings.data.domain || `example.com`}${
+          page.url
+        }/#post`,
         headline: prismic.asText(page.data.title),
         description:
           page.data.excerpt || page.data.meta_description || undefined,
-        mainEntityOfPage: `https://loriboiler.com${page.url}`,
+        mainEntityOfPage: `https://${settings.data.domain || `example.com`}${
+          page.url
+        }`,
         datePublished: page.data.date_published || page.first_publication_date,
         dateModified: page.last_publication_date || undefined,
         author: {
-          '@id': 'https://loriboiler.com/#lori',
+          '@id': `https://${settings.data.domain || `example.com`}/#lori`,
         },
         image: page.data.meta_image.url || undefined,
       },
@@ -128,9 +132,12 @@ export async function generateMetadata({
     title: `${prismic.asText(page.data.title) || page.data.meta_title} • ${
       settings.data.site_title
     }`,
-    description: page.data.meta_description || settings.data.meta_description,
+    description:
+      page.data.meta_description || settings.data.site_meta_description,
     openGraph: {
-      images: [page.data.meta_image.url || settings.data.og_image.url || ''],
+      images: [
+        page.data.meta_image.url || settings.data.site_meta_image.url || '',
+      ],
     },
   }
 }

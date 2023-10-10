@@ -13,8 +13,9 @@ export default async function Page() {
     '@graph': [
       {
         '@type': 'Person',
-        '@id': 'https://www.loriboiler.com/#lori',
+        '@id': `https://${settings.data.domain || `example.com`}/#lori`,
         name: 'Lori Boiler',
+        description: settings.data.site_meta_description || undefined,
         givenName: 'Lori',
         familyName: 'Boiler',
         telephone: '856-446-9416',
@@ -52,30 +53,32 @@ export default async function Page() {
       },
       {
         '@type': 'WebSite',
-        '@id': 'https://www.loriboiler.com/#site',
+        '@id': `https://${settings.data.domain || `example.com`}/#site`,
         publisher: {
-          '@id': 'https://www.loriboiler.com/#lori',
+          '@id': `https://${settings.data.domain || `example.com`}/#lori`,
         },
-        url: 'https://www.loriboiler.com',
+        url: `https://${settings.data.domain || `example.com`}/`,
         inLanguage: 'en-US',
         name: 'Lori Bolier',
       },
       {
         '@type': 'WebPage',
-        url: 'https://www.loriboiler.com/',
+        url: `https://${settings.data.domain || `example.com`}/`,
         name: 'Lori Boiler - Mortgage Professional | New Jersey',
         datePublished: page.first_publication_date,
         dateModified: page.last_publication_date || page.first_publication_date,
         about: {
-          '@id': 'https://www.loriboiler.com/#lori',
+          '@id': `https://${settings.data.domain || `example.com`}/#lori`,
         },
         isPartOf: {
-          '@id': 'https://www.loriboiler.com/#site',
+          '@id': `https://${settings.data.domain || `example.com`}/#site`,
         },
         primaryImageOfPage: {
           '@type': 'ImageObject',
           url:
-            page.data.meta_image.url || settings.data.og_image.url || undefined,
+            page.data.meta_image.url ||
+            settings.data.site_meta_image.url ||
+            undefined,
         },
         inLanguage: 'en-US',
       },
@@ -100,9 +103,12 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: page.data.meta_title || settings.data.site_title,
-    description: page.data.meta_description || settings.data.meta_description,
+    description:
+      page.data.meta_description || settings.data.site_meta_description,
     openGraph: {
-      images: [page.data.meta_image.url || settings.data.og_image.url || ''],
+      images: [
+        page.data.meta_image.url || settings.data.site_meta_image.url || '',
+      ],
     },
   }
 }

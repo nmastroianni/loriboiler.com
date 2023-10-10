@@ -269,6 +269,17 @@ export interface SettingsDocumentDataNavigationItem {
  */
 interface SettingsDocumentData {
 	/**
+	 * Domain field in *Settings*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: settings.domain
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	domain: prismic.KeyTextField;
+	
+	/**
 	 * Site Title field in *Settings*
 	 *
 	 * - **Field Type**: Text
@@ -280,26 +291,26 @@ interface SettingsDocumentData {
 	site_title: prismic.KeyTextField;
 	
 	/**
-	 * Meta Description field in *Settings*
+	 * Site Meta Description field in *Settings*
 	 *
 	 * - **Field Type**: Text
 	 * - **Placeholder**: *None*
-	 * - **API ID Path**: settings.meta_description
+	 * - **API ID Path**: settings.site_meta_description
 	 * - **Tab**: Main
 	 * - **Documentation**: https://prismic.io/docs/field#key-text
 	 */
-	meta_description: prismic.KeyTextField;
+	site_meta_description: prismic.KeyTextField;
 	
 	/**
-	 * OG Image field in *Settings*
+	 * Site Meta Image field in *Settings*
 	 *
 	 * - **Field Type**: Image
 	 * - **Placeholder**: *None*
-	 * - **API ID Path**: settings.og_image
+	 * - **API ID Path**: settings.site_meta_image
 	 * - **Tab**: Main
 	 * - **Documentation**: https://prismic.io/docs/field#image
 	 */
-	og_image: prismic.ImageField<never>;
+	site_meta_image: prismic.ImageField<never>;
 	
 	/**
 	 * Navigation field in *Settings*

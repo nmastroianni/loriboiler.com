@@ -29,13 +29,13 @@ export async function generateMetadata(): Promise<Metadata> {
   const client = createClient()
   const settings = await client.getSingle('settings')
   return {
-    metadataBase: new URL('https://www.loriboiler.com'),
+    metadataBase: new URL(`https://${settings.data.domain || `example.com`}`),
     title: settings.data.site_title || 'Lori Boiler',
     description:
-      settings.data.meta_description ||
+      settings.data.site_meta_description ||
       `Lori Boiler has been delivering friendly honest service you can depend on for over 30 years. Contact her today, and  you'll see.`,
     openGraph: {
-      images: [settings.data.og_image.url || ''],
+      images: [settings.data.site_meta_image.url || ''],
     },
   }
 }

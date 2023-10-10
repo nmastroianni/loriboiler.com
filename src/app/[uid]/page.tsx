@@ -42,9 +42,29 @@ export default async function Page({
     '@graph': [
       {
         '@type': 'Person',
-        '@id': 'https://loriboiler.com/#lori',
+        '@id': `https://${settings.data.domain || `example.com`}/#lori`,
         name: 'Lori Boiler',
-        description: settings.data.meta_description || '',
+        description: settings.data.site_meta_description || undefined,
+      },
+      {
+        '@type': 'WebPage',
+        '@id': `https://${settings.data.domain || `example.com`}/#${page.uid}`,
+        about: page.data.meta_description || undefined,
+        accountablePerson: {
+          '@id': `https://${settings.data.domain || `example.com`}/#lori`,
+        },
+        author: {
+          '@id': `https://${settings.data.domain || `example.com`}/#lori`,
+        },
+        copyrightHolder: {
+          '@id': `https://${settings.data.domain || `example.com`}/#lori`,
+        },
+        datePublished: page.first_publication_date,
+        dateModified: page.last_publication_date,
+        image:
+          page.data.meta_image.url ||
+          settings.data.site_meta_image.url ||
+          undefined,
       },
     ],
   }
@@ -99,9 +119,12 @@ export async function generateMetadata({
     title: `${prismic.asText(page.data.title) || page.data.meta_title} • ${
       settings.data.site_title
     }`,
-    description: page.data.meta_description || settings.data.meta_description,
+    description:
+      page.data.meta_description || settings.data.site_meta_description,
     openGraph: {
-      images: [page.data.meta_image.url || settings.data.og_image.url || ''],
+      images: [
+        page.data.meta_image.url || settings.data.site_meta_image.url || '',
+      ],
     },
   }
 }
