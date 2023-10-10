@@ -6,6 +6,13 @@
   "status": true,
   "json": {
     "Main": {
+      "domain": {
+        "type": "Text",
+        "config": {
+          "label": "Domain",
+          "placeholder": ""
+        }
+      },
       "site_title": {
         "type": "Text",
         "config": {
@@ -13,17 +20,17 @@
           "placeholder": ""
         }
       },
-      "meta_description": {
+      "site_meta_description": {
         "type": "Text",
         "config": {
-          "label": "Meta Description",
+          "label": "Site Meta Description",
           "placeholder": ""
         }
       },
-      "og_image": {
+      "site_meta_image": {
         "type": "Image",
         "config": {
-          "label": "OG Image",
+          "label": "Site Meta Image",
           "constraint": {
             "width": 1200,
             "height": 630
