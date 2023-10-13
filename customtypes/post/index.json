@@ -35,6 +35,24 @@
           "placeholder": ""
         }
       },
+      "custom_tags": {
+        "type": "Group",
+        "config": {
+          "label": "Custom Tags",
+          "fields": {
+            "custom_tag": {
+              "type": "Link",
+              "config": {
+                "label": "Custom Tag",
+                "select": "document",
+                "customtypes": [
+                  "tag"
+                ]
+              }
+            }
+          }
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

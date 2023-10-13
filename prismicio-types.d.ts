@@ -146,6 +146,21 @@ interface PageDocumentData {
  */
 export type PageDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
+/**
+ * Item in *Post → Custom Tags*
+ */
+export interface PostDocumentDataCustomTagsItem {
+	/**
+	 * Custom Tag field in *Post → Custom Tags*
+	 *
+	 * - **Field Type**: Content Relationship
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: post.custom_tags[].custom_tag
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	custom_tag: prismic.ContentRelationshipField<"tag">;
+}
+
 type PostDocumentDataSlicesSlice = HeroSlice | ImageWithTextSlice | ContentSlice
 
 /**
@@ -184,6 +199,17 @@ interface PostDocumentData {
 	 * - **Documentation**: https://prismic.io/docs/field#key-text
 	 */
 	excerpt: prismic.KeyTextField;
+	
+	/**
+	 * Custom Tags field in *Post*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: post.custom_tags[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	custom_tags: prismic.GroupField<Simplify<PostDocumentDataCustomTagsItem>>;
 	
 	/**
 	 * Slice Zone field in *Post*
@@ -336,6 +362,44 @@ interface SettingsDocumentData {
 export type SettingsDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<SettingsDocumentData>, "settings", Lang>;
 
 /**
+ * Content for Tag documents
+ */
+interface TagDocumentData {
+	/**
+	 * Title field in *Tag*
+	 *
+	 * - **Field Type**: Title
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: tag.title
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	title: prismic.TitleField;
+	
+	/**
+	 * Meta Description field in *Tag*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: tag.meta_description
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	meta_description: prismic.KeyTextField;
+}
+
+/**
+ * Tag document from Prismic
+ *
+ * - **API ID**: `tag`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type TagDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<Simplify<TagDocumentData>, "tag", Lang>;
+
+/**
  * Content for Testimonial documents
  */
 interface TestimonialDocumentData {
@@ -384,7 +448,7 @@ interface TestimonialDocumentData {
  */
 export type TestimonialDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<Simplify<TestimonialDocumentData>, "testimonial", Lang>;
 
-export type AllDocumentTypes = HomepageDocument | PageDocument | PostDocument | SettingsDocument | TestimonialDocument;
+export type AllDocumentTypes = HomepageDocument | PageDocument | PostDocument | SettingsDocument | TagDocument | TestimonialDocument;
 
 /**
  * Primary content in *Carousel → Primary*
@@ -753,10 +817,13 @@ declare module "@prismicio/client" {
 			PageDocumentDataSlicesSlice,
 			PostDocument,
 			PostDocumentData,
+			PostDocumentDataCustomTagsItem,
 			PostDocumentDataSlicesSlice,
 			SettingsDocument,
 			SettingsDocumentData,
 			SettingsDocumentDataNavigationItem,
+			TagDocument,
+			TagDocumentData,
 			TestimonialDocument,
 			TestimonialDocumentData,
 			AllDocumentTypes,

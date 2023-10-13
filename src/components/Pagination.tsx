@@ -1,6 +1,6 @@
 'use client'
 import { FC } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams, usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils/cn'
 
 interface PaginationProps {
@@ -15,6 +15,7 @@ const Pagination: FC<PaginationProps> = ({
   totalPages,
 }) => {
   const router = useRouter()
+  const path = usePathname()
   const searchParams = useSearchParams()
   const pageNumber = searchParams.get('page') || '1'
   return (
@@ -31,7 +32,7 @@ const Pagination: FC<PaginationProps> = ({
           )}
           disabled={!hasPrevPage}
           onClick={() => {
-            router.push(`blog/?page=${Number(pageNumber) - 1}`)
+            router.push(`${path}?page=${Number(pageNumber) - 1}`)
           }}
         >
           prev page
@@ -41,14 +42,14 @@ const Pagination: FC<PaginationProps> = ({
           className={cn(
             'inline-block rounded bg-color-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-color-base',
             {
-              'transition duration-150 ease-inhover:bg-emerald-900 hover:shadow hover:shadow-color-primary':
+              'transition duration-150 ease-in hover:bg-color-accent hover:shadow hover:shadow-color-accent hover:text-color-neutral':
                 hasNextPage,
               'bg-color-neutral': !hasNextPage,
             },
           )}
           disabled={!hasNextPage}
           onClick={() => {
-            router.push(`blog/?page=${Number(pageNumber) + 1}`)
+            router.push(`${path}?page=${Number(pageNumber) + 1}`)
           }}
         >
           next page
