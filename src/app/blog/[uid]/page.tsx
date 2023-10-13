@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { SliceZone } from '@prismicio/react'
 import * as prismic from '@prismicio/client'
@@ -10,6 +11,8 @@ import { PrismicNextImage } from '@prismicio/next'
 import { cn } from '@/lib/utils/cn'
 import { PrismicRichText } from '@/components/PrismicRichText'
 import Heading from '@/components/Heading'
+import { TagDocument } from '../../../../prismicio-types'
+import { HiTag } from 'react-icons/hi'
 
 type Params = { uid: string }
 
@@ -112,6 +115,22 @@ export default async function Page({ params }: { params: Params }) {
           <p className="text-sm uppercase font-medium z-10 text-color-base text-center">
             {pubDate}
           </p>
+          {prismic.isFilled.group(page.data.custom_tags) ? (
+            <ul className="flex justify-center my-2 gap-x-4 z-10">
+              {page.data.custom_tags.map(({ custom_tag }) => {
+                const ct = custom_tag as unknown
+                const tag = ct as TagDocument
+                return (
+                  <li className="text-color-base" key={tag.id}>
+                    <Link href={tag.url || '#'}>
+                      <HiTag className="h-4 w-4 inline mr-1" />
+                      {tag.uid}
+                    </Link>
+                  </li>
+                )
+              })}
+            </ul>
+          ) : null}
         </div>
       </Section>
       <SliceZone slices={page.data.slices} components={components} />

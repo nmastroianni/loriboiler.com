@@ -79,7 +79,7 @@ export default async function Page({
       {/* CODE FOR BLOG PAGE ONLY */}
       {page.uid === 'blog' && (
         <Section width="md">
-          {posts && posts.results.length > 0 && (
+          {posts && posts.results.length > 0 ? (
             <ul className="px-4 lg:px-0">
               {posts.results.map(post => {
                 return (
@@ -91,6 +91,10 @@ export default async function Page({
                 )
               })}
             </ul>
+          ) : (
+            <p className="prose lg:prose-lg xl:prose-xl mx-auto">
+              No posts have been published yet. Please check back again soon!
+            </p>
           )}
           {(posts?.next_page !== null || posts?.prev_page !== null) && (
             <Pagination
