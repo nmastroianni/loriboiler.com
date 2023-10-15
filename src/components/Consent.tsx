@@ -49,7 +49,8 @@ export default function Consent() {
                 'ad_storage': 'granted',
                 'analytics_storage': 'granted'
               });
-              localStorage.setItem('consentMode', JSON.stringify({ad_storage: 'granted', analytics_storage: 'granted'}))
+              localStorage.setItem('consentMode', JSON.stringify({ad_storage: 'granted', analytics_storage: 'granted'}));
+              fbq('consent', 'grant');
             `,
           }}
         />
