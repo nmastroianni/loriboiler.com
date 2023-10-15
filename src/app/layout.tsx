@@ -1,11 +1,14 @@
 import { Playfair_Display, Open_Sans } from 'next/font/google'
 import './globals.css'
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import { PrismicPreview } from '@prismicio/next'
 import { clsx } from 'clsx'
 import { createClient, repositoryName } from '@/prismicio'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import Analytics from '@/components/Analytics'
+import Consent from '@/components/Consent'
 
 /**
  * Heading & Body fonts
@@ -55,9 +58,14 @@ export default function RootLayout({
           `font-opensans text-color-neutral`,
         )}
       >
+        <Suspense>
+          <Analytics />
+        </Suspense>
+
         <Header />
         {children}
         <Footer />
+        <Consent />
         <PrismicPreview repositoryName={repositoryName} />
       </body>
     </html>
