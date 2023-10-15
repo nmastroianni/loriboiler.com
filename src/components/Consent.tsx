@@ -38,82 +38,85 @@ export default function Consent() {
     }, 3000)
   }, [])
   return (
-    <AnimatePresence>
-      {!hideBanner && (
-        <motion.div
-          initial={{
-            y: 152,
-          }}
-          animate={{
-            y: 0,
-          }}
-          exit={{
-            y: 152,
-          }}
-          id="consent-banner"
-          className={cn(
-            `fixed bottom-0 w-full bg-color-accent bg-opacity-95 p-3 grid md:grid-cols-5`,
-          )}
-        >
-          {consent === true && (
-            <Script
-              id="consupd"
-              strategy="afterInteractive"
-              dangerouslySetInnerHTML={{
-                __html: `
+    <>
+      {consent === true && (
+        <Script
+          id="consupd"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
               gtag('consent', 'update', {
                 'ad_storage': 'granted',
                 'analytics_storage': 'granted'
               });
               localStorage.setItem('consentMode', JSON.stringify({ad_storage: 'granted', analytics_storage: 'granted'}))
             `,
-              }}
-            />
-          )}
-          <p className="prose prose-sm mx-auto my-4 px-6 text-left md:col-span-3">
-            I respect your right to privacy. Period. If you wish to allow
-            cookies, I will get to learn a few things like what pages my clients
-            visit, how long they stay, etc. Please choose your preference below.
-            Data are only collected if you provide consent (which is how it
-            should be).
-          </p>
-          <div className="my-4 flex items-center justify-evenly md:col-span-2">
-            <button
-              className="absolute top-2 right-2"
-              onClick={e => {
-                setHideBanner(true)
-              }}
-            >
-              <HiX className="h-6 w-6 text-base-100" />
-              <span className="sr-only">Close</span>
-            </button>
-            <button
-              onClick={e => {
-                setHideBanner(true)
-                localStorage.setItem(
-                  'consentMode',
-                  JSON.stringify({
-                    ad_storage: 'denied',
-                    analytics_storage: 'denied',
-                    date_denied: new Date(),
-                  }),
-                )
-              }}
-              className="rounded-xl px-6 py-4 lg:text-lg"
-            >
-              Deny All
-            </button>
-            <button
-              onClick={() => {
-                setConsent(true)
-              }}
-              className="rounded-xl px-6 py-4 font-bold lg:text-lg bg-color-primary text-color-base"
-            >
-              Accept All
-            </button>
-          </div>
-        </motion.div>
+          }}
+        />
       )}
-    </AnimatePresence>
+      <AnimatePresence>
+        {!hideBanner && (
+          <motion.div
+            initial={{
+              y: 152,
+            }}
+            animate={{
+              y: 0,
+            }}
+            exit={{
+              y: 152,
+            }}
+            id="consent-banner"
+            className={cn(
+              `fixed bottom-0 w-full bg-color-accent bg-opacity-95 p-3 grid md:grid-cols-5`,
+            )}
+          >
+            <p className="prose prose-sm mx-auto my-4 px-6 text-left md:col-span-3">
+              I respect your right to privacy. Period. If you wish to allow
+              cookies, I will get to learn a few things like what pages my
+              clients visit, how long they stay, etc. Please choose your
+              preference below. Data are only collected if you provide consent
+              (which is how it should be).
+            </p>
+            <div className="my-4 flex items-center justify-evenly md:col-span-2">
+              <button
+                className="absolute top-2 right-2"
+                onClick={e => {
+                  setHideBanner(true)
+                }}
+              >
+                <HiX className="h-6 w-6 text-base-100" />
+                <span className="sr-only">Close</span>
+              </button>
+              <button
+                onClick={e => {
+                  setHideBanner(true)
+                  localStorage.setItem(
+                    'consentMode',
+                    JSON.stringify({
+                      ad_storage: 'denied',
+                      analytics_storage: 'denied',
+                      date_denied: new Date(),
+                    }),
+                  )
+                }}
+                className="rounded-xl px-6 py-4 lg:text-lg"
+              >
+                Deny All
+              </button>
+              <button
+                onClick={() => {
+                  setConsent(true)
+                  setHideBanner(true)
+                }}
+                className="rounded-xl px-6 py-4 font-bold lg:text-lg bg-color-primary text-color-base"
+              >
+                Accept All
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   )
 }
