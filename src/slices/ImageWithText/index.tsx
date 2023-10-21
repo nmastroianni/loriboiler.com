@@ -21,12 +21,14 @@ const ImageWithText = ({ slice }: ImageWithTextProps): JSX.Element => {
       width="lg"
     >
       <div className="grid grid-cols-1 items-center lg:grid-cols-3 lg:gap-12">
-        <div className="flex justify-center">
+        <div
+          className={cn('flex justify-center col-span-1', {
+            'lg:order-3': slice.primary.image_location,
+          })}
+        >
           <PrismicNextImage
             field={slice.primary.image}
-            className={cn('my-6 rounded-lg', {
-              'lg:order-3': slice.primary.image_location,
-            })}
+            className={cn('my-6 rounded-lg')}
             fallbackAlt=""
           />
         </div>
