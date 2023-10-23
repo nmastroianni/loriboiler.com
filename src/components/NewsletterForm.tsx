@@ -24,7 +24,7 @@ const NewsletterForm = (data: NewsletterSlice): React.JSX.Element => {
     console.log('form useEffect called', formInteraction)
     if (formInteraction) {
       const recaptchaScript = document.createElement('script')
-      recaptchaScript.src = `https://www.google.com/recaptcha/api.js?render=6Lc5v7woAAAAAJFT2iNOe0oJTMwRB0FKruVOoAJ2`
+      recaptchaScript.src = `https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`
       recaptchaScript.async = true
       recaptchaScript.defer = true
       document.head.appendChild(recaptchaScript)
