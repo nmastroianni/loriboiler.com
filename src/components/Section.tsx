@@ -18,7 +18,7 @@ export default function Section({
   return (
     <Comp
       className={cn(
-        'flex items-center px-4 py-10 md:px-6 md:py-14 lg:py-16',
+        'flex items-center px-4 py-8 md:px-6 md:py-10 lg:py-12',
         className,
       )}
       {...restProps}

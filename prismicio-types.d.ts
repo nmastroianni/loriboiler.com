@@ -75,7 +75,7 @@ interface HomepageDocumentData {
  */
 export type HomepageDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<HomepageDocumentData>, "homepage", Lang>;
 
-type PageDocumentDataSlicesSlice = ContentSlice | CarouselSlice | ImageWithTextSlice | HeroSlice
+type PageDocumentDataSlicesSlice = NewsletterSlice | ContentSlice | CarouselSlice | ImageWithTextSlice | HeroSlice
 
 /**
  * Content for Page documents
@@ -161,7 +161,7 @@ export interface PostDocumentDataCustomTagsItem {
 	custom_tag: prismic.ContentRelationshipField<"tag">;
 }
 
-type PostDocumentDataSlicesSlice = HeroSlice | ImageWithTextSlice | ContentSlice
+type PostDocumentDataSlicesSlice = NewsletterSlice | HeroSlice | ImageWithTextSlice | ContentSlice
 
 /**
  * Content for Post documents
@@ -348,6 +348,28 @@ interface SettingsDocumentData {
 	 * - **Documentation**: https://prismic.io/docs/field#group
 	 */
 	navigation: prismic.GroupField<Simplify<SettingsDocumentDataNavigationItem>>;
+	
+	/**
+	 * Facebook Page field in *Settings*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: settings.facebook_page
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	facebook_page: prismic.LinkField;
+	
+	/**
+	 * Mailerlite Group Id field in *Settings*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: settings.mailerlite_group_id
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	mailerlite_group_id: prismic.KeyTextField;
 }
 
 /**
@@ -710,6 +732,96 @@ type ImageWithTextSliceVariation = ImageWithTextSliceDefault
 export type ImageWithTextSlice = prismic.SharedSlice<"image_with_text", ImageWithTextSliceVariation>;
 
 /**
+ * Primary content in *Newsletter → Primary*
+ */
+export interface NewsletterSliceDefaultPrimary {
+	/**
+	 * Title field in *Newsletter → Primary*
+	 *
+	 * - **Field Type**: Title
+	 * - **Placeholder**: Enter a heading
+	 * - **API ID Path**: newsletter.primary.title
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	title: prismic.TitleField;
+	
+	/**
+	 * Description field in *Newsletter → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: Describe the newsletter
+	 * - **API ID Path**: newsletter.primary.description
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	description: prismic.RichTextField;
+	
+	/**
+	 * Form Location field in *Newsletter → Primary*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: true
+	 * - **API ID Path**: newsletter.primary.form_location
+	 * - **Documentation**: https://prismic.io/docs/field#boolean
+	 */
+	form_location: prismic.BooleanField;
+	
+	/**
+	 * Placeholder Text field in *Newsletter → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Explain what to put in the form
+	 * - **API ID Path**: newsletter.primary.placeholder_text
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	placeholder_text: prismic.KeyTextField;
+	
+	/**
+	 * Button Text field in *Newsletter → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: newsletter.primary.button_text
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	button_text: prismic.KeyTextField;
+	
+	/**
+	 * Button Color field in *Newsletter → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: Select a button color
+	 * - **Default Value**: Primary
+	 * - **API ID Path**: newsletter.primary.button_color
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	button_color: prismic.SelectField<"Primary" | "Secondary" | "Accent" | "Neutral" | "Base", "filled">;
+}
+
+/**
+ * Default variation for Newsletter Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type NewsletterSliceDefault = prismic.SharedSliceVariation<"default", Simplify<NewsletterSliceDefaultPrimary>, never>;
+
+/**
+ * Slice variation for *Newsletter*
+ */
+type NewsletterSliceVariation = NewsletterSliceDefault
+
+/**
+ * Newsletter Shared Slice
+ *
+ * - **API ID**: `newsletter`
+ * - **Description**: Newsletter
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type NewsletterSlice = prismic.SharedSlice<"newsletter", NewsletterSliceVariation>;
+
+/**
  * Primary content in *Steps → Primary*
  */
 export interface StepsSliceDefaultPrimary {
@@ -844,6 +956,10 @@ declare module "@prismicio/client" {
 			ImageWithTextSliceDefaultPrimary,
 			ImageWithTextSliceVariation,
 			ImageWithTextSliceDefault,
+			NewsletterSlice,
+			NewsletterSliceDefaultPrimary,
+			NewsletterSliceVariation,
+			NewsletterSliceDefault,
 			StepsSlice,
 			StepsSliceDefaultPrimary,
 			StepsSliceDefaultItem,

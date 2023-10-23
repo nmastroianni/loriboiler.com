@@ -60,6 +60,21 @@
             }
           }
         }
+      },
+      "facebook_page": {
+        "type": "Link",
+        "config": {
+          "label": "Facebook Page",
+          "placeholder": "",
+          "select": null
+        }
+      },
+      "mailerlite_group_id": {
+        "type": "Text",
+        "config": {
+          "label": "Mailerlite Group Id",
+          "placeholder": ""
+        }
       }
     }
   }
