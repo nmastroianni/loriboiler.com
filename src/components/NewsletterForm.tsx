@@ -1,11 +1,18 @@
 'use client'
 
+declare global {
+  interface Window {
+    grecaptcha: any
+  }
+}
+
 import * as React from 'react'
 import { NewsletterSlice } from '../../prismicio-types'
 import { cn } from '@/lib/utils/cn'
 import { experimental_useFormStatus as useFormStatus } from 'react-dom'
 import { KeyTextField } from '@prismicio/client'
 import { FieldValues, useForm } from 'react-hook-form'
+import { addSubscriber } from '@/app/actions'
 
 type FormValues = {
   email: string
@@ -29,7 +36,6 @@ const NewsletterForm = (data: NewsletterSlice): React.JSX.Element => {
     reset,
     formState: { errors, isSubmitting, isValid },
   } = useForm<FormValues>()
-  console.log('NewsletterForm says -> ', errors)
   const [formInteraction, setFormInteraction] = React.useState(false)
   // const { pending } = useFormStatus()
 
@@ -41,7 +47,20 @@ const NewsletterForm = (data: NewsletterSlice): React.JSX.Element => {
     trigger()
     if (!isValid) return
     // calling server action passed into the client component here (if the form is valid)
-    const { data, error } = await someServerAction(formData)
+    let token = ''
+    window.grecaptcha.ready(() => {
+      window.grecaptcha
+        .execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, {
+          action: 'submit',
+        })
+        .then((recaptchaToken: string) => {
+          token = recaptchaToken
+        })
+    })
+    const { message } = await addSubscriber(formData, token)
+    console.log('callAction says ', message)
+
+    // const { message } = await addSubscriber(formData, token)
     return { success: true }
     // handling server action response here...
   }
@@ -88,8 +107,6 @@ const NewsletterForm = (data: NewsletterSlice): React.JSX.Element => {
   function SubmitButton({
     text = 'Submit',
   }: SubmitButtonProps): React.JSX.Element {
-    const { pending } = useFormStatus()
-
     return (
       <button
         disabled={isSubmitting}
@@ -115,7 +132,6 @@ const NewsletterForm = (data: NewsletterSlice): React.JSX.Element => {
   return (
     <form
       className="flex flex-col gap-y-4 place-self-center my-6"
-      // action={addSubscriber}
       action={callAction}
     >
       <div

@@ -24,12 +24,14 @@
     "eslint": "latest",
     "eslint-config-next": "latest",
     "framer-motion": "^10.16.4",
+    "googleapis": "^128.0.0",
     "next": "latest",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.47.0",
     "react-icons": "^4.11.0",
-    "typescript": "5.2.2"
+    "typescript": "5.2.2",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@slicemachine/adapter-next": "latest",
