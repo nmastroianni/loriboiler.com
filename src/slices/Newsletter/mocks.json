@@ -43,10 +43,15 @@
 				"type": "Select",
 				"value": "Primary"
 			},
-			"placeholder_text": {
+			"first_name_placeholder_text": {
 				"__TYPE__": "FieldContent",
-				"type": "Text",
-				"value": "Customizable placeholder text"
+				"value": "recently",
+				"type": "Text"
+			},
+			"email_placeholder_text": {
+				"__TYPE__": "FieldContent",
+				"value": "weather",
+				"type": "Text"
 			}
 		},
 		"items": []

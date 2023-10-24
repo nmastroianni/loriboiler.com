@@ -39,11 +39,18 @@
             "default_value": true
           }
         },
-        "placeholder_text": {
+        "first_name_placeholder_text": {
           "type": "Text",
           "config": {
-            "label": "Placeholder Text",
-            "placeholder": "Explain what to put in the form"
+            "label": "First Name Placeholder Text",
+            "placeholder": ""
+          }
+        },
+        "email_placeholder_text": {
+          "type": "Text",
+          "config": {
+            "label": "Email Placeholder Text",
+            "placeholder": ""
           }
         },
         "button_text": {

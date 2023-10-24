@@ -767,14 +767,24 @@ export interface NewsletterSliceDefaultPrimary {
 	form_location: prismic.BooleanField;
 	
 	/**
-	 * Placeholder Text field in *Newsletter → Primary*
+	 * First Name Placeholder Text field in *Newsletter → Primary*
 	 *
 	 * - **Field Type**: Text
-	 * - **Placeholder**: Explain what to put in the form
-	 * - **API ID Path**: newsletter.primary.placeholder_text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: newsletter.primary.first_name_placeholder_text
 	 * - **Documentation**: https://prismic.io/docs/field#key-text
 	 */
-	placeholder_text: prismic.KeyTextField;
+	first_name_placeholder_text: prismic.KeyTextField;
+	
+	/**
+	 * Email Placeholder Text field in *Newsletter → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: newsletter.primary.email_placeholder_text
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	email_placeholder_text: prismic.KeyTextField;
 	
 	/**
 	 * Button Text field in *Newsletter → Primary*

@@ -11,5 +11,9 @@
 }
 
 .btn {
-  @apply inline-block rounded bg-color-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-color-base transition duration-150 ease-in hover:bg-color-accent hover:text-color-neutral hover:shadow hover:shadow-color-neutral;
+  @apply inline-block rounded bg-color-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-color-base transition duration-150 ease-in hover:shadow hover:shadow-color-neutral;
+}
+
+.error-text {
+  @apply text-rose-600 text-sm;
 }

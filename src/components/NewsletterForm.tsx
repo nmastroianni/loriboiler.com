@@ -5,23 +5,48 @@ import { NewsletterSlice } from '../../prismicio-types'
 import { cn } from '@/lib/utils/cn'
 import { experimental_useFormStatus as useFormStatus } from 'react-dom'
 import { KeyTextField } from '@prismicio/client'
+import { FieldValues, useForm } from 'react-hook-form'
+
+type FormValues = {
+  email: string
+  firstName: string
+}
 
 const NewsletterForm = (data: NewsletterSlice): React.JSX.Element => {
   const {
-    primary: { button_color, button_text, placeholder_text },
-    id,
+    primary: {
+      button_color,
+      button_text,
+      email_placeholder_text,
+      first_name_placeholder_text,
+    },
   } = data
 
+  const {
+    register,
+    trigger,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting, isValid },
+  } = useForm<FormValues>()
+  console.log('NewsletterForm says -> ', errors)
   const [formInteraction, setFormInteraction] = React.useState(false)
   // const { pending } = useFormStatus()
 
   const handleFocus = () => {
-    console.log('handlefocus triggered before', formInteraction)
     !formInteraction && setFormInteraction(true)
   }
 
+  const callAction = async (formData: FormData) => {
+    trigger()
+    if (!isValid) return
+    // calling server action passed into the client component here (if the form is valid)
+    const { data, error } = await someServerAction(formData)
+    return { success: true }
+    // handling server action response here...
+  }
+
   React.useEffect(() => {
-    console.log('form useEffect called', formInteraction)
     if (formInteraction) {
       const recaptchaScript = document.createElement('script')
       recaptchaScript.src = `https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`
@@ -66,7 +91,22 @@ const NewsletterForm = (data: NewsletterSlice): React.JSX.Element => {
     const { pending } = useFormStatus()
 
     return (
-      <button type="submit" aria-disabled={pending} className={cn('btn')}>
+      <button
+        disabled={isSubmitting}
+        type="submit"
+        aria-disabled={isSubmitting}
+        className={cn(
+          'inline-block rounded my-4 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-color-base transition duration-150 ease-in hover:shadow hover:shadow-color-neutral',
+          {
+            'bg-color-primary': button_color === 'Primary',
+            'bg-color-secondary': button_color === 'Secondary',
+            'bg-color-accent text-color-neutral': button_color === 'Accent',
+            'bg-color-neutral': button_color === 'Neutral',
+            'border border-color-primary text-color-primary':
+              button_color === 'Base',
+          },
+        )}
+      >
         {text}
       </button>
     )
@@ -76,20 +116,62 @@ const NewsletterForm = (data: NewsletterSlice): React.JSX.Element => {
     <form
       className="flex flex-col gap-y-4 place-self-center my-6"
       // action={addSubscriber}
+      action={callAction}
     >
-      <label htmlFor={`email_${id}`}>
-        <span className="sr-only">What is your email address?</span>
-        <input
-          name={`email_${id}`}
-          type="email"
-          placeholder={placeholder_text || 'Enter your email here'}
-          className={`form-input rounded w-full max-w-s self-end`}
-          onFocus={handleFocus}
-        />
-      </label>
+      <div
+        className={cn('grid lg:grid-cols-5 gap-x-3 gap-y-6', {
+          'gap-y-14': errors.email || errors.firstName,
+        })}
+      >
+        <div className="relative lg:col-span-2">
+          {errors?.firstName && (
+            <p className="absolute -top-10 error-text">
+              {' '}
+              &darr; {errors?.firstName?.message}
+            </p>
+          )}
+          <label htmlFor={'firstName'}>
+            <span className="sr-only">What is your first name?</span>
+            <input
+              id="firstName"
+              {...register('firstName', {
+                required: 'Your first name is required.',
+              })}
+              type="text"
+              placeholder={
+                first_name_placeholder_text || 'Enter your email here'
+              }
+              className={`form-input rounded w-full max-w-s self-end`}
+              onFocus={handleFocus}
+            />
+          </label>
+        </div>
+        <div className="relative lg:col-span-3">
+          {errors?.email && (
+            <p className="absolute -top-10 error-text">
+              {' '}
+              &darr; {errors?.email?.message}
+            </p>
+          )}
+          <label htmlFor={'email'}>
+            <span className="sr-only">What is your email address?</span>
+            <input
+              id="email"
+              {...register('email', {
+                required: 'Your email address is required.',
+              })}
+              type="email"
+              placeholder={email_placeholder_text || 'Enter your email here'}
+              className={`form-input rounded w-full max-w-s self-end`}
+              onFocus={handleFocus}
+            />
+          </label>
+        </div>
+      </div>
+
       <div>
         <SubmitButton text={button_text} />
-        <p className="prose prose-sm prose-a:text-primary-content prose-a:no-underline hover:prose-a:underline">
+        <p className="mt-3 prose prose-sm prose-a:text-primary-content prose-a:no-underline hover:prose-a:underline">
           This site is protected by reCAPTCHA and the{' '}
           <a href="https://policies.google.com/privacy">
             Google Privacy Policy
