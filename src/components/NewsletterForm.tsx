@@ -47,21 +47,18 @@ const NewsletterForm = (data: NewsletterSlice): React.JSX.Element => {
     trigger()
     if (!isValid) return
     // calling server action passed into the client component here (if the form is valid)
-    let token = ''
     window.grecaptcha.ready(() => {
       window.grecaptcha
         .execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, {
           action: 'submit',
         })
-        .then((recaptchaToken: string) => {
-          token = recaptchaToken
+        .then(async (recaptchaToken: string) => {
+          const { message } = await addSubscriber(formData, recaptchaToken)
+          console.log('callAction says ----> ', message)
         })
     })
-    const { message } = await addSubscriber(formData, token)
-    console.log('callAction says ', message)
 
     // const { message } = await addSubscriber(formData, token)
-    return { success: true }
     // handling server action response here...
   }
 
