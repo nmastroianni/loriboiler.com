@@ -9,14 +9,14 @@ declare global {
 import * as React from 'react'
 import { NewsletterSlice } from '../../prismicio-types'
 import { cn } from '@/lib/utils/cn'
-import { experimental_useFormStatus as useFormStatus } from 'react-dom'
 import { KeyTextField } from '@prismicio/client'
-import { FieldValues, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { addSubscriber } from '@/app/actions'
 
 type FormValues = {
   email: string
   firstName: string
+  token?: string
 }
 
 const NewsletterForm = (data: NewsletterSlice): React.JSX.Element => {
@@ -32,34 +32,15 @@ const NewsletterForm = (data: NewsletterSlice): React.JSX.Element => {
   const {
     register,
     trigger,
-    handleSubmit,
     reset,
     formState: { errors, isSubmitting, isValid },
   } = useForm<FormValues>()
+
+  const [success, setSuccess] = React.useState<boolean | null>(null)
   const [formInteraction, setFormInteraction] = React.useState(false)
-  // const { pending } = useFormStatus()
 
   const handleFocus = () => {
     !formInteraction && setFormInteraction(true)
-  }
-
-  const callAction = async (formData: FormData) => {
-    trigger()
-    if (!isValid) return
-    // calling server action passed into the client component here (if the form is valid)
-    window.grecaptcha.ready(() => {
-      window.grecaptcha
-        .execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, {
-          action: 'submit',
-        })
-        .then(async (recaptchaToken: string) => {
-          const { message } = await addSubscriber(formData, recaptchaToken)
-          console.log('callAction says ----> ', message)
-        })
-    })
-
-    // const { message } = await addSubscriber(formData, token)
-    // handling server action response here...
   }
 
   React.useEffect(() => {
@@ -127,73 +108,104 @@ const NewsletterForm = (data: NewsletterSlice): React.JSX.Element => {
   }
 
   return (
-    <form
-      className="flex flex-col gap-y-4 place-self-center my-6"
-      action={callAction}
-    >
-      <div
-        className={cn('grid lg:grid-cols-5 gap-x-3 gap-y-6', {
-          'gap-y-14': errors.email || errors.firstName,
-        })}
-      >
-        <div className="relative lg:col-span-2">
-          {errors?.firstName && (
-            <p className="absolute -top-10 error-text">
-              {' '}
-              &darr; {errors?.firstName?.message}
-            </p>
-          )}
-          <label htmlFor={'firstName'}>
-            <span className="sr-only">What is your first name?</span>
-            <input
-              id="firstName"
-              {...register('firstName', {
-                required: 'Your first name is required.',
-              })}
-              type="text"
-              placeholder={
-                first_name_placeholder_text || 'Enter your email here'
-              }
-              className={`form-input rounded w-full max-w-s self-end`}
-              onFocus={handleFocus}
-            />
-          </label>
-        </div>
-        <div className="relative lg:col-span-3">
-          {errors?.email && (
-            <p className="absolute -top-10 error-text">
-              {' '}
-              &darr; {errors?.email?.message}
-            </p>
-          )}
-          <label htmlFor={'email'}>
-            <span className="sr-only">What is your email address?</span>
-            <input
-              id="email"
-              {...register('email', {
-                required: 'Your email address is required.',
-              })}
-              type="email"
-              placeholder={email_placeholder_text || 'Enter your email here'}
-              className={`form-input rounded w-full max-w-s self-end`}
-              onFocus={handleFocus}
-            />
-          </label>
-        </div>
-      </div>
-
-      <div>
-        <SubmitButton text={button_text} />
-        <p className="mt-3 prose prose-sm prose-a:text-primary-content prose-a:no-underline hover:prose-a:underline">
-          This site is protected by reCAPTCHA and the{' '}
-          <a href="https://policies.google.com/privacy">
-            Google Privacy Policy
-          </a>{' '}
-          and <a href="https://policies.google.com/terms">Terms of Service</a>{' '}
-          apply.
+    <>
+      {success === true && (
+        <p className="text-color-primary text-xl">
+          Thank you for joining my newsletter. Check your inbox!
         </p>
-      </div>
-    </form>
+      )}
+      {success !== true && (
+        <form
+          className="flex flex-col gap-y-4 place-self-center my-6"
+          // action={otherAction}
+          action={async (formData: FormData) => {
+            trigger()
+            if (!isValid) return
+            // calling server action passed into the client component here (if the form is valid)
+            window.grecaptcha.ready(() => {
+              window.grecaptcha
+                .execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, {
+                  action: 'submit',
+                })
+                .then(async (recaptchaToken: string) => {
+                  formData.set('token', recaptchaToken)
+                  const { message } = await addSubscriber(formData)
+                  if (message === 200) {
+                    reset()
+                    setSuccess(true)
+                  }
+                })
+            })
+          }}
+        >
+          <div
+            className={cn('grid lg:grid-cols-5 gap-x-3 gap-y-6', {
+              'gap-y-14': errors.email || errors.firstName,
+            })}
+          >
+            <div className="relative lg:col-span-2">
+              {errors?.firstName && (
+                <p className="absolute -top-10 error-text">
+                  {' '}
+                  &darr; {errors?.firstName?.message}
+                </p>
+              )}
+              <label htmlFor={'firstName'}>
+                <span className="sr-only">What is your first name?</span>
+                <input
+                  id="firstName"
+                  {...register('firstName', {
+                    required: 'Your first name is required.',
+                  })}
+                  type="text"
+                  placeholder={
+                    first_name_placeholder_text || 'Enter your email here'
+                  }
+                  className={`form-input rounded w-full max-w-s self-end`}
+                  onFocus={handleFocus}
+                />
+              </label>
+            </div>
+            <div className="relative lg:col-span-3">
+              {errors?.email && (
+                <p className="absolute -top-10 error-text">
+                  {' '}
+                  &darr; {errors?.email?.message}
+                </p>
+              )}
+              <label htmlFor={'email'}>
+                <span className="sr-only">What is your email address?</span>
+                <input
+                  id="email"
+                  {...register('email', {
+                    required: 'Your email address is required.',
+                  })}
+                  type="email"
+                  placeholder={
+                    email_placeholder_text || 'Enter your email here'
+                  }
+                  className={`form-input rounded w-full max-w-s self-end`}
+                  onFocus={handleFocus}
+                />
+              </label>
+            </div>
+          </div>
+
+          <div>
+            <SubmitButton text={button_text} />
+            <p className="mt-3 prose prose-sm prose-a:text-primary-content prose-a:no-underline hover:prose-a:underline">
+              This site is protected by reCAPTCHA and the{' '}
+              <a href="https://policies.google.com/privacy">
+                Google Privacy Policy
+              </a>{' '}
+              and{' '}
+              <a href="https://policies.google.com/terms">Terms of Service</a>{' '}
+              apply.
+            </p>
+          </div>
+        </form>
+      )}
+    </>
   )
 }
 

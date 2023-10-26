@@ -13,7 +13,7 @@ export type NewsletterProps = SliceComponentProps<Content.NewsletterSlice>
 /**
  * Component for "Newsletter" Slices.
  */
-const Newsletter = ({ slice, index }: NewsletterProps): JSX.Element => {
+const Newsletter = ({ slice }: NewsletterProps): JSX.Element => {
   return (
     <Section
       data-slice-type={slice.slice_type}

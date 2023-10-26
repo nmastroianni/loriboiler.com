@@ -31,8 +31,45 @@ const recaptchaValidation = async (token: string) => {
   return result
 }
 
-export async function addSubscriber(formData: FormData, token: string) {
+export async function addSubscriber(formData: FormData) {
+  'use server'
+  const token = `${formData.get('token')}`
+
   const recaptchaResult = await recaptchaValidation(token)
-  console.log('recaptchaResult ====> ', recaptchaResult)
+
+  const captchaScore = Number(recaptchaResult.message)
+  if (!recaptchaResult.successful) {
+    // recaptcha was not successful
+    return {
+      statusCode: 400,
+      message: recaptchaResult.message,
+    }
+  } else {
+    if (captchaScore > 0.8) {
+      // likley to be a human
+      const API_KEY = process.env.EMS_API_KEY
+      try {
+        const ems_response = await axios.post(
+          `https://api.convertkit.com/v3/sequences/${process.env.EMS_SUBSCRIBE_ID}/subscribe`,
+          {
+            api_key: API_KEY,
+            email: formData.get('email'),
+            first_name: formData.get('firstName'),
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json; charset=utf-8',
+            },
+          },
+        )
+        if (ems_response.status === 200) {
+          return { message: ems_response.status }
+        }
+      } catch (e: unknown) {
+        const error = e as AxiosError
+        return { message: error }
+      }
+    }
+  }
   return { message: recaptchaResult.message }
 }
