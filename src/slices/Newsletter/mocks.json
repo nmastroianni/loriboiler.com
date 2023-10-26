@@ -1,0 +1,59 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Newsletter Slice",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Use this slice when you want to place a form on the page so visitors can join your newsletter.",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"form_location": {
+				"__TYPE__": "BooleanContent",
+				"value": false
+			},
+			"button_text": {
+				"__TYPE__": "FieldContent",
+				"type": "Text",
+				"value": "Customizable Button Text"
+			},
+			"button_color": {
+				"__TYPE__": "FieldContent",
+				"type": "Select",
+				"value": "Primary"
+			},
+			"first_name_placeholder_text": {
+				"__TYPE__": "FieldContent",
+				"value": "recently",
+				"type": "Text"
+			},
+			"email_placeholder_text": {
+				"__TYPE__": "FieldContent",
+				"value": "weather",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]

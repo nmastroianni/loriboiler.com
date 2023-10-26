@@ -3,6 +3,8 @@ import { cn } from '@/lib/utils/cn'
 import Section from './Section'
 import Link from 'next/link'
 import { FaFacebook } from 'react-icons/fa'
+import { PrismicNextLink } from '@prismicio/next'
+import { isFilled } from '@prismicio/client'
 export default async function Footer() {
   const client = createClient()
   const settings = await client.getSingle('settings')
@@ -13,7 +15,11 @@ export default async function Footer() {
     >
       <div className="mx-auto grid max-w-screen-lg place-items-center lg:grid-cols-2 gap-8">
         <div>
-          <FaFacebook className="h-8 w-8 text-color-base" />
+          {isFilled.link(settings.data.facebook_page) && (
+            <PrismicNextLink field={settings.data.facebook_page}>
+              <FaFacebook className="h-8 w-8 text-color-base" />
+            </PrismicNextLink>
+          )}
         </div>
         <div className="text-center lg:text-left">
           <Link href="/">{settings.data.site_title} NMLS #90059</Link>

@@ -1,0 +1,82 @@
+{
+  "id": "newsletter",
+  "type": "SharedSlice",
+  "name": "Newsletter",
+  "description": "Newsletter",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "Enter a heading",
+            "allowTargetBlank": true,
+            "single": "heading2"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "placeholder": "Describe the newsletter",
+            "allowTargetBlank": true,
+            "multi": "paragraph,hyperlink,strong,em,o-list-item,list-item"
+          }
+        },
+        "form_location": {
+          "type": "Boolean",
+          "config": {
+            "label": "Form Location",
+            "placeholder_false": "Left",
+            "placeholder_true": "Right",
+            "default_value": true
+          }
+        },
+        "first_name_placeholder_text": {
+          "type": "Text",
+          "config": {
+            "label": "First Name Placeholder Text",
+            "placeholder": ""
+          }
+        },
+        "email_placeholder_text": {
+          "type": "Text",
+          "config": {
+            "label": "Email Placeholder Text",
+            "placeholder": ""
+          }
+        },
+        "button_text": {
+          "type": "Text",
+          "config": {
+            "label": "Button Text",
+            "placeholder": ""
+          }
+        },
+        "button_color": {
+          "type": "Select",
+          "config": {
+            "label": "Button Color",
+            "placeholder": "Select a button color",
+            "options": [
+              "Primary",
+              "Secondary",
+              "Accent",
+              "Neutral",
+              "Base"
+            ],
+            "default_value": "Primary"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
