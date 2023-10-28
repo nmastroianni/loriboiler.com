@@ -91,7 +91,7 @@ const NewsletterForm = (data: NewsletterSlice): React.JSX.Element => {
         type="submit"
         aria-disabled={isSubmitting}
         className={cn(
-          'inline-block rounded my-4 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-color-base transition duration-150 ease-in hover:shadow hover:shadow-color-neutral',
+          'my-4 inline-block rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-color-base transition duration-150 ease-in hover:shadow hover:shadow-color-neutral',
           {
             'bg-color-primary': button_color === 'Primary',
             'bg-color-secondary': button_color === 'Secondary',
@@ -110,13 +110,13 @@ const NewsletterForm = (data: NewsletterSlice): React.JSX.Element => {
   return (
     <>
       {success === true && (
-        <p className="text-color-primary text-xl">
+        <p className="text-xl text-color-primary">
           Thank you for joining my newsletter. Check your inbox!
         </p>
       )}
       {success !== true && (
         <form
-          className="flex flex-col gap-y-4 place-self-center my-6"
+          className="my-6 flex flex-col gap-y-4 place-self-center"
           // action={otherAction}
           action={async (formData: FormData) => {
             trigger()
@@ -139,13 +139,13 @@ const NewsletterForm = (data: NewsletterSlice): React.JSX.Element => {
           }}
         >
           <div
-            className={cn('grid lg:grid-cols-5 gap-x-3 gap-y-6', {
+            className={cn('grid gap-x-3 gap-y-6 lg:grid-cols-5', {
               'gap-y-14': errors.email || errors.firstName,
             })}
           >
             <div className="relative lg:col-span-2">
               {errors?.firstName && (
-                <p className="absolute -top-10 error-text">
+                <p className="error-text absolute -top-10">
                   {' '}
                   &darr; {errors?.firstName?.message}
                 </p>
@@ -161,14 +161,14 @@ const NewsletterForm = (data: NewsletterSlice): React.JSX.Element => {
                   placeholder={
                     first_name_placeholder_text || 'Enter your email here'
                   }
-                  className={`form-input rounded w-full max-w-s self-end`}
+                  className={`max-w-s form-input w-full self-end rounded`}
                   onFocus={handleFocus}
                 />
               </label>
             </div>
             <div className="relative lg:col-span-3">
               {errors?.email && (
-                <p className="absolute -top-10 error-text">
+                <p className="error-text absolute -top-10">
                   {' '}
                   &darr; {errors?.email?.message}
                 </p>
@@ -184,7 +184,7 @@ const NewsletterForm = (data: NewsletterSlice): React.JSX.Element => {
                   placeholder={
                     email_placeholder_text || 'Enter your email here'
                   }
-                  className={`form-input rounded w-full max-w-s self-end`}
+                  className={`max-w-s form-input w-full self-end rounded`}
                   onFocus={handleFocus}
                 />
               </label>
@@ -193,7 +193,7 @@ const NewsletterForm = (data: NewsletterSlice): React.JSX.Element => {
 
           <div>
             <SubmitButton text={button_text} />
-            <p className="mt-3 prose prose-sm prose-a:text-primary-content prose-a:no-underline hover:prose-a:underline">
+            <p className="prose-a:text-primary-content prose prose-sm mt-3 prose-a:no-underline hover:prose-a:underline">
               This site is protected by reCAPTCHA and the{' '}
               <a href="https://policies.google.com/privacy">
                 Google Privacy Policy

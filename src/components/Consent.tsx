@@ -69,7 +69,7 @@ export default function Consent() {
             }}
             id="consent-banner"
             className={cn(
-              `fixed bottom-0 w-full bg-color-accent bg-opacity-95 p-3 grid md:grid-cols-5`,
+              `fixed bottom-0 grid w-full bg-color-accent bg-opacity-95 p-3 md:grid-cols-5`,
             )}
           >
             <p className="prose prose-sm mx-auto my-4 px-6 text-left md:col-span-3">
@@ -81,12 +81,12 @@ export default function Consent() {
             </p>
             <div className="my-4 flex items-center justify-evenly md:col-span-2">
               <button
-                className="absolute top-2 right-2"
+                className="absolute right-2 top-2"
                 onClick={e => {
                   setHideBanner(true)
                 }}
               >
-                <HiX className="h-6 w-6 text-base-100" />
+                <HiX className="text-base-100 h-6 w-6" />
                 <span className="sr-only">Close</span>
               </button>
               <button
@@ -110,7 +110,7 @@ export default function Consent() {
                   setConsent(true)
                   setHideBanner(true)
                 }}
-                className="rounded-xl px-6 py-4 font-bold lg:text-lg bg-color-primary text-color-base"
+                className="rounded-xl bg-color-primary px-6 py-4 font-bold text-color-base lg:text-lg"
               >
                 Accept All
               </button>

@@ -20,9 +20,9 @@ const Newsletter = ({ slice }: NewsletterProps): JSX.Element => {
       data-slice-variation={slice.variation}
       width="xl"
     >
-      <div className="grid lg:grid-cols-2 max-w-screen-xl mx-auto my-4 md:my-6 lg:my-8 xl:my-10 md:gap-x-4 px-4">
+      <div className="mx-auto my-4 grid max-w-screen-xl px-4 md:my-6 md:gap-x-4 lg:my-8 lg:grid-cols-2 xl:my-10">
         <div
-          className={cn('prose lg:prose-lg xl:prose-xl mx-auto', {
+          className={cn('prose mx-auto lg:prose-lg xl:prose-xl', {
             'order-last': slice.primary.form_location,
           })}
         >

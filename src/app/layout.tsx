@@ -52,7 +52,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={clsx(
-          'flex flex-col justify-between min-h-screen',
+          'flex min-h-screen flex-col justify-between',
           playfairDisplay.variable,
           openSans.variable,
           `font-opensans text-color-neutral`,

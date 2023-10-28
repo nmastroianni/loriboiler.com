@@ -19,17 +19,17 @@ export default async function TagsIndex() {
         <Heading
           as="h1"
           size="5xl"
-          className="lg:text-center text-color-primary"
+          className="text-color-primary lg:text-center"
         >
           Explore by Tag
         </Heading>
         <hr className="my-6 lg:my-12" />
         {tags.results.length > 0 ? (
-          <ul className="prose lg:prose-lg xl:prose-xl mx-auto">
+          <ul className="prose mx-auto lg:prose-lg xl:prose-xl">
             {tags.results.map(tag => (
               <li key={tag.id}>
                 <Link href={tag.url || '#'}>
-                  <HiTag className="inline h-5 w-5 mr-3" />
+                  <HiTag className="mr-3 inline h-5 w-5" />
                   {asText(tag.data.title)}
                 </Link>
               </li>

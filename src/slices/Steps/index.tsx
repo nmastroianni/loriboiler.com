@@ -26,12 +26,12 @@ const Steps = ({ slice, index }: StepsProps): JSX.Element => {
         fallbackAlt=""
         fill
         sizes="70vw"
-        className="object-cover opacity-0 lg:opacity-100 hidden lg:block"
+        className="hidden object-cover opacity-0 lg:block lg:opacity-100"
         priority={index === 0}
       />
       {slice?.items?.length && (
         <div
-          className={cn('grid gap-y-16 lg:gap-x-6 py-12 ', {
+          className={cn('grid gap-y-16 py-12 lg:gap-x-6 ', {
             'lg:grid-cols-3':
               slice.items.length === 3 || slice.items.length === 6,
             'lg:grid-cols-2':

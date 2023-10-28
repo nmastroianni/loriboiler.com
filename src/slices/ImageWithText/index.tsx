@@ -22,7 +22,7 @@ const ImageWithText = ({ slice }: ImageWithTextProps): JSX.Element => {
     >
       <div className="grid grid-cols-1 items-center lg:grid-cols-3 lg:gap-12">
         <div
-          className={cn('flex justify-center col-span-1', {
+          className={cn('col-span-1 flex justify-center', {
             'lg:order-3': slice.primary.image_location,
           })}
         >

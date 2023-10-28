@@ -20,12 +20,12 @@ const Pagination: FC<PaginationProps> = ({
   const pageNumber = searchParams.get('page') || '1'
   return (
     <>
-      <div className="flex gap-2 justify-center">
+      <div className="flex justify-center gap-2">
         <button
           className={cn(
             'inline-block rounded bg-color-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-color-base',
             {
-              'transition duration-150 ease-inhover:bg-emerald-900 hover:shadow hover:shadow-color-primary':
+              'ease-inhover:bg-emerald-900 transition duration-150 hover:shadow hover:shadow-color-primary':
                 hasPrevPage,
               'bg-color-neutral': !hasPrevPage,
             },
@@ -42,7 +42,7 @@ const Pagination: FC<PaginationProps> = ({
           className={cn(
             'inline-block rounded bg-color-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-color-base',
             {
-              'transition duration-150 ease-in hover:bg-color-accent hover:shadow hover:shadow-color-accent hover:text-color-neutral':
+              'transition duration-150 ease-in hover:bg-color-accent hover:text-color-neutral hover:shadow hover:shadow-color-accent':
                 hasNextPage,
               'bg-color-neutral': !hasNextPage,
             },
@@ -56,7 +56,7 @@ const Pagination: FC<PaginationProps> = ({
         </button>
       </div>
       {totalPages && (
-        <div className="flex justify-center my-6 ">
+        <div className="my-6 flex justify-center ">
           Page {pageNumber} of {totalPages}
         </div>
       )}

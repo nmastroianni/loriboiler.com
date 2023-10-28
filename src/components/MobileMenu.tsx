@@ -14,9 +14,9 @@ type MobileMenuProps = {
 
 export default function MobileMenu(navigation: MobileMenuProps) {
   return (
-    <Menu as="div" className="relative inline-block text-left lg:hidden z-30">
+    <Menu as="div" className="relative z-30 inline-block text-left lg:hidden">
       <div>
-        <Menu.Button className="inline-flex w-full justify-center  px-4 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary focus-visible:ring-opacity-75">
+        <Menu.Button className="focus-visible:ring-brand-secondary inline-flex w-full  justify-center px-4 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75">
           <HiMenu className="h-8 w-8 text-color-secondary" />
           <span className="sr-only">Open Menu</span>
         </Menu.Button>
@@ -42,7 +42,7 @@ export default function MobileMenu(navigation: MobileMenuProps) {
                           active
                             ? 'bg-brand-secondary text-color-secondary'
                             : 'text-color-primary'
-                        } grid place-items-center rounded-md px-2 py-2 text-center divide-y-2 divide-color-secondary`}
+                        } grid place-items-center divide-y-2 divide-color-secondary rounded-md px-2 py-2 text-center`}
                       >
                         <PrismicNextLink
                           field={item.link}

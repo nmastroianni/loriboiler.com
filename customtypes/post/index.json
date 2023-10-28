@@ -45,9 +45,7 @@
               "config": {
                 "label": "Custom Tag",
                 "select": "document",
-                "customtypes": [
-                  "tag"
-                ]
+                "customtypes": ["tag"]
               }
             }
           }

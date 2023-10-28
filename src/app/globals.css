@@ -15,5 +15,5 @@
 }
 
 .error-text {
-  @apply text-rose-600 text-sm;
+  @apply text-sm text-rose-600;
 }

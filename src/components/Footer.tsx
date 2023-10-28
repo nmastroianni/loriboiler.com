@@ -13,7 +13,7 @@ export default async function Footer() {
       as="footer"
       className={cn('bg-color-neutral text-color-base lg:text-lg')}
     >
-      <div className="mx-auto grid max-w-screen-lg place-items-center lg:grid-cols-2 gap-8">
+      <div className="mx-auto my-6 grid max-w-screen-lg place-items-center gap-8 lg:my-0 lg:grid-cols-2">
         <div>
           {isFilled.link(settings.data.facebook_page) && (
             <PrismicNextLink field={settings.data.facebook_page}>
@@ -26,7 +26,7 @@ export default async function Footer() {
           <p>&copy; {new Date().getFullYear()}</p>
         </div>
       </div>
-      <div className="my-4 text-center lg:my-8 text-xs">
+      <div className="my-4 text-center text-xs lg:my-8">
         <Link href={'/privacy'}>Privacy</Link>
         <p className=" my-3">
           This site does not allow for mortgage solicitation or loan
