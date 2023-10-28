@@ -86,7 +86,7 @@ export default async function Page({ params }: { params: Params }) {
       />
       <Section
         className={cn(
-          'relative py-36 lg:py-44 xl:py-56 2xl:py-72 flex justify-center items-center bg-color-primary',
+          'relative flex items-center justify-center bg-color-primary py-36 lg:py-44 xl:py-56 2xl:py-72',
         )}
       >
         {prismic.isFilled.image(page.data.meta_image) && (
@@ -97,7 +97,7 @@ export default async function Page({ params }: { params: Params }) {
             className="absolute inset-0 object-cover opacity-10"
           />
         )}
-        <div className="flex flex-col z-20 max-w-screen-sm mx-auto">
+        <div className="z-20 mx-auto flex max-w-screen-sm flex-col">
           <PrismicRichText
             field={page.data.title}
             components={{
@@ -105,25 +105,25 @@ export default async function Page({ params }: { params: Params }) {
                 <Heading
                   as="h1"
                   size="7xl"
-                  className="text-color-base z-10 lg:text-center"
+                  className="z-10 text-color-base lg:text-center"
                 >
                   {children}
                 </Heading>
               ),
             }}
           />
-          <p className="text-sm uppercase font-medium z-10 text-color-base text-center">
+          <p className="z-10 text-center text-sm font-medium uppercase text-color-base">
             {pubDate}
           </p>
           {prismic.isFilled.group(page.data.custom_tags) ? (
-            <ul className="flex justify-center my-2 gap-x-4 z-10">
+            <ul className="z-10 my-2 flex justify-center gap-x-4">
               {page.data.custom_tags.map(({ custom_tag }) => {
                 const ct = custom_tag as unknown
                 const tag = ct as TagDocument
                 return (
                   <li className="text-color-base" key={tag.id}>
                     <Link href={tag.url || '#'}>
-                      <HiTag className="h-4 w-4 inline mr-1" />
+                      <HiTag className="mr-1 inline h-4 w-4" />
                       {tag.uid}
                     </Link>
                   </li>

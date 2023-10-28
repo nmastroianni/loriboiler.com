@@ -91,7 +91,7 @@ export default async function Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <SliceZone slices={page.data.slices} components={components} />)
+      <SliceZone slices={page.data.slices} components={components} />
     </>
   )
 }

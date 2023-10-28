@@ -86,13 +86,13 @@ export default async function Page({
                   <BlogCard
                     key={post.id}
                     post={post}
-                    className="max-w-xl mx-auto"
+                    className="mx-auto max-w-xl"
                   />
                 )
               })}
             </ul>
           ) : (
-            <p className="prose lg:prose-lg xl:prose-xl mx-auto">
+            <p className="prose mx-auto lg:prose-lg xl:prose-xl">
               No posts have been published yet. Please check back again soon!
             </p>
           )}

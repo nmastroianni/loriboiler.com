@@ -17,7 +17,7 @@ const Content = ({ slice }: ContentProps): JSX.Element => {
       data-slice-variation={slice.variation}
       width="lg"
     >
-      <div className="prose lg:prose-lg mx-auto">
+      <div className="prose mx-auto lg:prose-lg">
         <PrismicRichText field={slice.primary.content} />
       </div>
     </Section>

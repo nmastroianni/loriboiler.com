@@ -59,7 +59,7 @@ export default async function Page({
           size="4xl"
           className="text-color-primary lg:text-center"
         >
-          <HiTag className="h-8 w-8 inline" /> Posts tagged as{' '}
+          <HiTag className="inline h-8 w-8" /> Posts tagged as{' '}
           {prismic.asText(page.data.title)}
         </Heading>
         {prismic.isFilled.keyText(page.data.meta_description) ? (
@@ -72,13 +72,13 @@ export default async function Page({
                 <BlogCard
                   key={post.id}
                   post={post}
-                  className="max-w-xl mx-auto"
+                  className="mx-auto max-w-xl"
                 />
               )
             })}
           </ul>
         ) : (
-          <div className="text-center my-8">
+          <div className="my-8 text-center">
             No posts have been tagged with this tag yet. Please try back another
             day.
           </div>

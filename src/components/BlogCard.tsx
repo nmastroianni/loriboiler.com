@@ -27,7 +27,7 @@ export default function BlogCard({
   return (
     <Comp
       className={cn(
-        'block rounded-lg border border-color-secondary my-8 lg:my-12',
+        'my-8 block rounded-lg border border-color-secondary lg:my-12',
         className,
       )}
       {...restProps}
@@ -56,7 +56,7 @@ export default function BlogCard({
           <p className="mb-4">{post.data.excerpt}</p>
           <Link
             href={`${post.url}`}
-            className="inline-block rounded bg-color-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-color-base transition duration-150 ease-in hover:bg-color-accent hover:shadow hover:shadow-color-accent hover:text-color-neutral"
+            className="inline-block rounded bg-color-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-color-base transition duration-150 ease-in hover:bg-color-accent hover:text-color-neutral hover:shadow hover:shadow-color-accent"
           >
             Continue Reading
           </Link>
@@ -69,7 +69,7 @@ export default function BlogCard({
                   <li className="py-4" key={td.id}>
                     <Link href={td.url || '#'}>
                       <HiTag
-                        className={`h-5 w-5 text-color-accent inline mr-1`}
+                        className={`mr-1 inline h-5 w-5 text-color-accent`}
                       />
                       {td.uid}
                     </Link>
