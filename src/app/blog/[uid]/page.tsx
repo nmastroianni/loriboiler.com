@@ -98,7 +98,7 @@ export default async function Page({ params }: { params: Params }) {
             priority
           />
         )}
-        <div className="z-20 mx-auto flex max-w-screen-lg flex-col">
+        <div className="z-10 mx-auto flex max-w-screen-lg flex-col">
           <PrismicRichText
             field={page.data.title}
             components={{
