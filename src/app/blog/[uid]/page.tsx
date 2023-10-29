@@ -84,20 +84,21 @@ export default async function Page({ params }: { params: Params }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Section
+      <section
         className={cn(
           'relative flex items-center justify-center bg-color-primary py-36 lg:py-44 xl:py-56 2xl:py-72',
         )}
       >
-        {prismic.isFilled.image(page.data.meta_image) && (
+        {prismic.isFilled.image(page.data.featured_image) && (
           <PrismicNextImage
-            field={page.data.meta_image}
+            field={page.data.featured_image}
             fill
             sizes="45vw"
             className="absolute inset-0 object-cover opacity-10"
+            priority
           />
         )}
-        <div className="z-20 mx-auto flex max-w-screen-sm flex-col">
+        <div className="z-20 mx-auto flex max-w-screen-lg flex-col">
           <PrismicRichText
             field={page.data.title}
             components={{
@@ -132,7 +133,7 @@ export default async function Page({ params }: { params: Params }) {
             </ul>
           ) : null}
         </div>
-      </Section>
+      </section>
       <SliceZone slices={page.data.slices} components={components} />
     </>
   )
