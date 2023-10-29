@@ -18,6 +18,7 @@ export default async function Footer() {
           {isFilled.link(settings.data.facebook_page) && (
             <PrismicNextLink field={settings.data.facebook_page}>
               <FaFacebook className="h-8 w-8 text-color-base" />
+              <span className="sr-only">Visit my Facebook page</span>
             </PrismicNextLink>
           )}
         </div>
