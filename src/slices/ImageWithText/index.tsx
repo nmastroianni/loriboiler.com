@@ -13,7 +13,7 @@ export type ImageWithTextProps = SliceComponentProps<Content.ImageWithTextSlice>
 /**
  * Component for "ImageWithText" Slices.
  */
-const ImageWithText = ({ slice }: ImageWithTextProps): JSX.Element => {
+const ImageWithText = ({ slice, index }: ImageWithTextProps): JSX.Element => {
   return (
     <Section
       data-slice-type={slice.slice_type}
@@ -30,6 +30,7 @@ const ImageWithText = ({ slice }: ImageWithTextProps): JSX.Element => {
             field={slice.primary.image}
             className={cn('my-6 rounded-lg')}
             fallbackAlt=""
+            priority={index < 2}
           />
         </div>
         <div
