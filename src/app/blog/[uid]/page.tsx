@@ -86,7 +86,7 @@ export default async function Page({ params }: { params: Params }) {
       />
       <section
         className={cn(
-          'relative flex items-center justify-center bg-color-primary py-36 lg:py-44 xl:py-56 2xl:py-72',
+          'relative mb-8 flex items-center justify-center bg-color-primary py-36 lg:py-44 xl:py-56 2xl:py-72',
         )}
       >
         {prismic.isFilled.image(page.data.featured_image) && (
@@ -98,7 +98,7 @@ export default async function Page({ params }: { params: Params }) {
             priority
           />
         )}
-        <div className="z-10 mx-auto flex max-w-screen-lg flex-col">
+        <div className="z-10 mx-auto flex max-w-screen-lg flex-col px-4">
           <PrismicRichText
             field={page.data.title}
             components={{
