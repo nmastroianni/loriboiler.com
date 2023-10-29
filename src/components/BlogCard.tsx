@@ -27,17 +27,17 @@ export default function BlogCard({
   return (
     <Comp
       className={cn(
-        'my-8 block rounded-lg border border-color-secondary lg:my-12',
+        'my-8 block overflow-hidden rounded-lg border border-color-secondary lg:my-12',
         className,
       )}
       {...restProps}
     >
       <article>
-        {isFilled.image(post.data.meta_image) && (
+        {isFilled.image(post.data.featured_image) && (
           <Link href={`${post.url}`}>
             <PrismicNextImage
-              field={post.data.meta_image}
-              className="rounded-t-lg"
+              field={post.data.featured_image}
+              className=""
               fallbackAlt=""
             />
           </Link>

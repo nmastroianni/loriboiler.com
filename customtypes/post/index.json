@@ -35,6 +35,14 @@
           "placeholder": ""
         }
       },
+      "featured_image": {
+        "type": "Image",
+        "config": {
+          "label": "Featured Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
       "custom_tags": {
         "type": "Group",
         "config": {
@@ -45,7 +53,9 @@
               "config": {
                 "label": "Custom Tag",
                 "select": "document",
-                "customtypes": ["tag"]
+                "customtypes": [
+                  "tag"
+                ]
               }
             }
           }
