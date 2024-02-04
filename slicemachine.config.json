@@ -1,10 +1,7 @@
 {
   "repositoryName": "loriboiler",
   "adapter": {
-    "resolve": "@slicemachine/adapter-next",
-    "options": {
-      "format": false
-    }
+    "resolve": "@slicemachine/adapter-next"
   },
   "libraries": ["./src/slices"],
   "localSliceSimulatorURL": "http://localhost:3000/slice-simulator"

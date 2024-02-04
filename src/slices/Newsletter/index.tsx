@@ -23,7 +23,7 @@ const Newsletter = ({ slice }: NewsletterProps): JSX.Element => {
       <div className="mx-auto my-4 grid max-w-screen-xl px-4 md:my-6 md:gap-x-4 lg:my-8 lg:grid-cols-2 xl:my-10">
         <div
           className={cn('prose mx-auto lg:prose-lg xl:prose-xl', {
-            'order-last': slice.primary.form_location,
+            'order-last': !slice.primary.form_location,
           })}
         >
           <PrismicRichText field={slice.primary.title} />
