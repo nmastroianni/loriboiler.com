@@ -23,7 +23,7 @@ export default async function Page({ params }: { params: Params }) {
   let pubDate
   page.data.date_published
     ? (pubDate = new Date(page.data.date_published).toLocaleDateString(
-        'en-CA',
+        'en-US',
         {
           weekday: 'long',
           month: 'long',
@@ -86,7 +86,7 @@ export default async function Page({ params }: { params: Params }) {
       />
       <section
         className={cn(
-          'relative mb-8 flex items-center justify-center bg-color-primary py-36 lg:py-44 xl:py-56 2xl:py-72',
+          'bg-primary relative mb-8 flex items-center justify-center py-36 lg:py-44 xl:py-56 2xl:py-72',
         )}
       >
         {prismic.isFilled.image(page.data.featured_image) && (

@@ -65,8 +65,15 @@
           "config": {
             "label": "Button Color",
             "placeholder": "Select a button color",
-            "options": ["Primary", "Secondary", "Accent", "Neutral", "Base"],
-            "default_value": "Primary"
+            "options": [
+              "default",
+              "secondary",
+              "outline",
+              "ghost",
+              "link",
+              "destructive"
+            ],
+            "default_value": "default"
           }
         }
       },

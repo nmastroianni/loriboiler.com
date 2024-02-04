@@ -3,8 +3,8 @@ import { SliceComponentProps } from '@prismicio/react'
 import Section from '@/components/Section'
 import { cn } from '@/lib/utils/cn'
 import { PrismicRichText } from '@/components/PrismicRichText'
-import { PrismicNextImage } from '@prismicio/next'
-import Button from '@/components/Button'
+import { PrismicNextImage, PrismicNextLink } from '@prismicio/next'
+import { Button } from '@/components/ui/button'
 
 /**
  * Props for `Hero`.
@@ -36,9 +36,9 @@ const Hero = ({ slice, index }: HeroProps): JSX.Element => {
       >
         <div
           className={cn(
-            'absolute inset-0 z-[-1] bg-gradient-to-b from-color-accent via-color-base to-color-base lg:bg-gradient-to-l lg:from-transparent lg:via-color-base lg:to-color-base',
+            'from-accent via-background to-foreground lg:via-background lg:to-background absolute inset-0 z-[-1] bg-gradient-to-b lg:bg-gradient-to-l lg:from-transparent',
             {
-              'lg:bg-gradient-to-r lg:from-transparent lg:via-color-base lg:to-color-base':
+              'lg:via-background lg:to-background lg:bg-gradient-to-r lg:from-transparent':
                 !slice.primary.image_location,
             },
           )}
@@ -51,11 +51,14 @@ const Hero = ({ slice, index }: HeroProps): JSX.Element => {
             {isFilled.link(slice.primary.button_link) &&
               isFilled.keyText(slice.primary.button_text) && (
                 <Button
-                  field={slice.primary.button_link}
-                  color="primary"
+                  variant="default"
+                  size="lg"
                   className="my-6 place-self-center"
+                  asChild
                 >
-                  {slice.primary.button_text}
+                  <PrismicNextLink field={slice.primary.button_link}>
+                    {slice.primary.button_text}
+                  </PrismicNextLink>
                 </Button>
               )}
           </div>

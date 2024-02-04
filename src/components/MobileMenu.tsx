@@ -1,12 +1,9 @@
 'use client'
-import { HiMenu, HiChevronDown } from 'react-icons/hi'
 import { Menu, Transition } from '@headlessui/react'
 import { PrismicNextLink } from '@prismicio/next'
-import { Fragment, useEffect, useRef, useState } from 'react'
-import {
-  SettingsDocumentData,
-  SettingsDocumentDataNavigationItem,
-} from '../../prismicio-types'
+import { Fragment } from 'react'
+import { HiMenu } from 'react-icons/hi'
+import { SettingsDocumentDataNavigationItem } from '../../prismicio-types'
 
 type MobileMenuProps = {
   navigation: Array<SettingsDocumentDataNavigationItem>
