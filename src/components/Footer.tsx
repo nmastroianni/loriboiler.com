@@ -11,7 +11,7 @@ export default async function Footer() {
   return (
     <Section
       as="footer"
-      className={cn('bg-color-neutral text-color-base lg:text-lg')}
+      className={cn('text-muted-foreground bg-muted lg:text-lg')}
     >
       <div className="mx-auto my-6 grid max-w-screen-lg place-items-center gap-8 lg:my-0 lg:grid-cols-2">
         <div>

@@ -12,6 +12,7 @@ import { cn } from '@/lib/utils/cn'
 import { KeyTextField } from '@prismicio/client'
 import { useForm } from 'react-hook-form'
 import { addSubscriber } from '@/app/actions'
+import { Button } from '@/components/ui/button'
 
 type FormValues = {
   email: string
@@ -80,30 +81,28 @@ const NewsletterForm = (data: NewsletterSlice): React.JSX.Element => {
 
   type SubmitButtonProps = {
     text?: KeyTextField
+    variant?:
+      | 'default'
+      | 'secondary'
+      | 'outline'
+      | 'destructive'
+      | 'ghost'
+      | 'link'
   }
 
   function SubmitButton({
     text = 'Submit',
+    variant = 'default',
   }: SubmitButtonProps): React.JSX.Element {
     return (
-      <button
+      <Button
         disabled={isSubmitting}
         type="submit"
         aria-disabled={isSubmitting}
-        className={cn(
-          'my-4 inline-block rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-color-base transition duration-150 ease-in hover:shadow hover:shadow-color-neutral',
-          {
-            'bg-color-primary': button_color === 'Primary',
-            'bg-color-secondary': button_color === 'Secondary',
-            'bg-color-accent text-color-neutral': button_color === 'Accent',
-            'bg-color-neutral': button_color === 'Neutral',
-            'border border-color-primary text-color-primary':
-              button_color === 'Base',
-          },
-        )}
+        variant={variant}
       >
         {text}
-      </button>
+      </Button>
     )
   }
 
@@ -161,7 +160,7 @@ const NewsletterForm = (data: NewsletterSlice): React.JSX.Element => {
                   placeholder={
                     first_name_placeholder_text || 'Enter your email here'
                   }
-                  className={`max-w-s form-input w-full self-end rounded`}
+                  className="w-full max-w-sm self-end rounded"
                   onFocus={handleFocus}
                 />
               </label>
@@ -184,7 +183,7 @@ const NewsletterForm = (data: NewsletterSlice): React.JSX.Element => {
                   placeholder={
                     email_placeholder_text || 'Enter your email here'
                   }
-                  className={`max-w-s form-input w-full self-end rounded`}
+                  className={`w-full max-w-sm self-end rounded`}
                   onFocus={handleFocus}
                 />
               </label>
@@ -192,7 +191,7 @@ const NewsletterForm = (data: NewsletterSlice): React.JSX.Element => {
           </div>
 
           <div>
-            <SubmitButton text={button_text} />
+            <SubmitButton text={button_text} variant={button_color} />
             <p className="prose-a:text-primary-content prose prose-sm mt-3 prose-a:no-underline hover:prose-a:underline">
               This site is protected by reCAPTCHA and the{' '}
               <a href="https://policies.google.com/privacy">

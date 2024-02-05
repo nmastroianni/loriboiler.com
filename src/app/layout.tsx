@@ -55,7 +55,7 @@ export default function RootLayout({
           'flex min-h-screen flex-col justify-between',
           playfairDisplay.variable,
           openSans.variable,
-          `font-opensans text-color-neutral`,
+          `text-primary-foreground font-opensans`,
         )}
       >
         <Suspense>

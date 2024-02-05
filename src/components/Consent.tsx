@@ -5,6 +5,7 @@ import * as React from 'react'
 import { HiX } from 'react-icons/hi'
 import { AnimatePresence, motion } from 'framer-motion'
 import Script from 'next/script'
+import { Button } from '@/components/ui/button'
 
 export default function Consent() {
   const [consent, setConsent] = React.useState<boolean>(false)
@@ -69,7 +70,7 @@ export default function Consent() {
             }}
             id="consent-banner"
             className={cn(
-              'fixed bottom-0 z-10 grid w-full bg-color-accent bg-opacity-95 p-3 md:grid-cols-5',
+              'bg-accent fixed bottom-0 z-10 grid w-full bg-opacity-95 p-3 md:grid-cols-5',
             )}
           >
             <p className="prose prose-sm mx-auto my-4 px-6 text-left md:col-span-3">
@@ -86,10 +87,10 @@ export default function Consent() {
                   setHideBanner(true)
                 }}
               >
-                <HiX className="text-base-100 h-6 w-6" />
+                <HiX className="text-background h-6 w-6" />
                 <span className="sr-only">Close</span>
               </button>
-              <button
+              <Button
                 onClick={e => {
                   setHideBanner(true)
                   localStorage.setItem(
@@ -101,19 +102,20 @@ export default function Consent() {
                     }),
                   )
                 }}
-                className="rounded-xl px-6 py-4 lg:text-lg"
+                variant="link"
               >
                 Deny All
-              </button>
-              <button
+              </Button>
+              <Button
                 onClick={() => {
                   setConsent(true)
                   setHideBanner(true)
                 }}
-                className="rounded-xl bg-color-primary px-6 py-4 font-bold text-color-base lg:text-lg"
+                variant="default"
+                size="lg"
               >
                 Accept All
-              </button>
+              </Button>
             </div>
           </motion.div>
         )}
