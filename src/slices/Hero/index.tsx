@@ -36,7 +36,7 @@ const Hero = ({ slice, index }: HeroProps): JSX.Element => {
       >
         <div
           className={cn(
-            'from-accent via-background to-foreground lg:via-background lg:to-background absolute inset-0 z-[-1] bg-gradient-to-b lg:bg-gradient-to-l lg:from-transparent',
+            'from-accent via-background to-background lg:via-background lg:to-background absolute inset-0 z-[-1] bg-gradient-to-b lg:bg-gradient-to-l lg:from-transparent',
             {
               'lg:via-background lg:to-background lg:bg-gradient-to-r lg:from-transparent':
                 !slice.primary.image_location,
