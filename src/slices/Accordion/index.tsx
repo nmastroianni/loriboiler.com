@@ -61,8 +61,12 @@ const Accordion = ({ slice }: AccordionProps): JSX.Element => {
                     />
                     {isFilled.link(item.link) &&
                       isFilled.keyText(item.button_label) && (
-                        <div className="py-2">
-                          <Button asChild variant={item.button_variant}>
+                        <div className="flex justify-center py-2 lg:justify-start">
+                          <Button
+                            asChild
+                            variant={item.button_variant}
+                            className="text-xs lg:text-sm"
+                          >
                             <PrismicNextLink field={item.link}>
                               {item.button_label}
                             </PrismicNextLink>
