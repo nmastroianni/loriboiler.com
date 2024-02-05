@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic'
 
 export const components = {
+  accordion: dynamic(() => import('./Accordion')),
   carousel: dynamic(() => import('./Carousel')),
   content: dynamic(() => import('./Content')),
   hero: dynamic(() => import('./Hero')),

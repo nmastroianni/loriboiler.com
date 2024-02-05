@@ -86,6 +86,7 @@ export type HomepageDocument<Lang extends string = string> =
   >
 
 type PageDocumentDataSlicesSlice =
+  | AccordionSlice
   | NewsletterSlice
   | ContentSlice
   | CarouselSlice
@@ -99,13 +100,13 @@ interface PageDocumentData {
   /**
    * Title field in *Page*
    *
-   * - **Field Type**: Rich Text
+   * - **Field Type**: Title
    * - **Placeholder**: *None*
    * - **API ID Path**: page.title
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  title: prismic.RichTextField
+  title: prismic.TitleField
 
   /**
    * Slice Zone field in *Page*
@@ -520,6 +521,110 @@ export type AllDocumentTypes =
   | SettingsDocument
   | TagDocument
   | TestimonialDocument
+
+/**
+ * Primary content in *Accordion → Primary*
+ */
+export interface AccordionSliceDefaultPrimary {
+  /**
+   * Title field in *Accordion → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: accordion.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.TitleField
+}
+
+/**
+ * Primary content in *Accordion → Items*
+ */
+export interface AccordionSliceDefaultItem {
+  /**
+   * Trigger field in *Accordion → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: accordion.items[].trigger
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  trigger: prismic.KeyTextField
+
+  /**
+   * Content field in *Accordion → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: This text answers the trigger question
+   * - **API ID Path**: accordion.items[].content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField
+
+  /**
+   * Link field in *Accordion → Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Optionally include a button or link
+   * - **API ID Path**: accordion.items[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField
+
+  /**
+   * Button Label field in *Accordion → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: What should the button/link say?
+   * - **API ID Path**: accordion.items[].button_label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  button_label: prismic.KeyTextField
+
+  /**
+   * Button Variant field in *Accordion → Items*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: What type of button do you want?
+   * - **Default Value**: default
+   * - **API ID Path**: accordion.items[].button_variant
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  button_variant: prismic.SelectField<
+    'default' | 'secondary' | 'outline' | 'ghost' | 'link' | 'destructive',
+    'filled'
+  >
+}
+
+/**
+ * Default variation for Accordion Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AccordionSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<AccordionSliceDefaultPrimary>,
+  Simplify<AccordionSliceDefaultItem>
+>
+
+/**
+ * Slice variation for *Accordion*
+ */
+type AccordionSliceVariation = AccordionSliceDefault
+
+/**
+ * Accordion Shared Slice
+ *
+ * - **API ID**: `accordion`
+ * - **Description**: Accordion
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AccordionSlice = prismic.SharedSlice<
+  'accordion',
+  AccordionSliceVariation
+>
 
 /**
  * Primary content in *Carousel → Primary*
@@ -1037,6 +1142,11 @@ declare module '@prismicio/client' {
       TestimonialDocument,
       TestimonialDocumentData,
       AllDocumentTypes,
+      AccordionSlice,
+      AccordionSliceDefaultPrimary,
+      AccordionSliceDefaultItem,
+      AccordionSliceVariation,
+      AccordionSliceDefault,
       CarouselSlice,
       CarouselSliceDefaultPrimary,
       CarouselSliceDefaultItem,
