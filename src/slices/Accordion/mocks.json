@@ -1,0 +1,129 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Accordion Slice",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": [
+					[
+						"content",
+						{
+							"__TYPE__": "StructuredTextContent",
+							"value": [
+								{
+									"type": "paragraph",
+									"content": {
+										"text": "Answer the question or explain and describe the item here. Provide them with text to intrigue them.",
+										"spans": []
+									},
+									"direction": "ltr"
+								},
+								{
+									"type": "paragraph",
+									"content": {
+										"text": "You can have more than one paragraph, but don't use more than two.",
+										"spans": [
+											{
+												"type": "strong",
+												"start": 0,
+												"end": 36
+											}
+										]
+									},
+									"direction": "ltr"
+								}
+							]
+						}
+					],
+					[
+						"link",
+						{
+							"__TYPE__": "LinkContent",
+							"value": {
+								"__TYPE__": "ExternalLink",
+								"url": "http://google.com"
+							}
+						}
+					],
+					[
+						"button_label",
+						{
+							"__TYPE__": "FieldContent",
+							"type": "Text",
+							"value": "Option Button/Link"
+						}
+					],
+					[
+						"button_variant",
+						{
+							"__TYPE__": "FieldContent",
+							"type": "Select",
+							"value": "default"
+						}
+					],
+					[
+						"trigger",
+						{
+							"__TYPE__": "FieldContent",
+							"type": "Text",
+							"value": "Ask a question or list an item for your visitors to explore..."
+						}
+					]
+				]
+			},
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": [
+					[
+						"trigger",
+						{
+							"__TYPE__": "FieldContent",
+							"type": "Text",
+							"value": "What is the first-time homebuyers program?"
+						}
+					],
+					[
+						"content",
+						{
+							"__TYPE__": "StructuredTextContent",
+							"value": [
+								{
+									"type": "paragraph",
+									"content": {
+										"text": "Marshmallow toffee cupcake cake cake cheesecake. Tart oat cake topping jelly-o dragée bonbon ice cream. Apple pie lollipop gummies wafer jelly-o chocolate bar. Jelly shortbread sesame snaps lemon drops cake candy oat cake.",
+										"spans": []
+									},
+									"direction": "ltr"
+								},
+								{
+									"type": "paragraph",
+									"content": {
+										"text": "Icing cookie bear claw sugar plum liquorice cake dessert pie. Gummies chocolate icing carrot cake fruitcake soufflé marshmallow lemon drops dragée. Cotton candy cheesecake brownie soufflé donut chupa chups sweet sweet roll gummi bears.",
+										"spans": []
+									},
+									"direction": "ltr"
+								}
+							]
+						}
+					]
+				]
+			}
+		]
+	}
+]

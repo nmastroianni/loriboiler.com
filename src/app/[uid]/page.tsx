@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { SliceZone } from '@prismicio/react'
+import { PrismicRichText } from '@/components/PrismicRichText'
 import * as prismic from '@prismicio/client'
 import { createClient } from '@/prismicio'
 import { components } from '@/slices'
@@ -24,6 +25,7 @@ export default async function Page({
   const client = createClient()
   const pageNumber = Number(searchParams['page']) || 1
   const page = await client.getByUID('page', params.uid).catch(() => notFound())
+  const heroes = page.data.slices.filter(slice => slice.slice_type === 'hero')
   let posts
   if (page.uid === 'blog') {
     posts = await client.getByType('post', {
@@ -75,6 +77,11 @@ export default async function Page({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      {heroes.length < 1 && (
+        <div className="prose mx-auto lg:prose-lg xl:prose-xl 2xl:prose-2xl">
+          <PrismicRichText field={page.data.title} />
+        </div>
+      )}
       <SliceZone slices={page.data.slices} components={components} />
       {/* CODE FOR BLOG PAGE ONLY */}
       {page.uid === 'blog' && (
