@@ -1,16 +1,18 @@
+import { createClient } from '@/prismicio'
+import * as prismic from '@prismicio/client'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import * as prismic from '@prismicio/client'
-import { createClient } from '@/prismicio'
 
-import Section from '@/components/Section'
-import Heading from '@/components/Heading'
 import BlogCard from '@/components/BlogCard'
+import Heading from '@/components/Heading'
 import Pagination from '@/components/Pagination'
-import { PrismicRichText } from '@/components/PrismicRichText'
+import Section from '@/components/Section'
 import { HiTag } from 'react-icons/hi'
 
 type Params = { uid: string }
+/**
+ * SearchParams are used for pagination ex: ?page=2
+ */
 type SearchParams = {
   [key: string]: string | string[] | undefined
 }
@@ -23,8 +25,12 @@ export default async function Page({
   searchParams: SearchParams
 }) {
   const client = createClient()
+  // set pageNumber to the searchParam page number or 1
   const pageNumber = Number(searchParams['page']) || 1
   const page = await client.getByUID('tag', params.uid).catch(() => notFound())
+  /**
+   * get posts and then filter them based on the page.id
+   */
   const posts = await client.getByType('post', {
     orderings: {
       field: 'document.first_publication_date',
@@ -48,8 +54,6 @@ export default async function Page({
     page: pageNumber,
     pageSize: 5,
   })
-
-  const settings = await client.getSingle('settings')
 
   return (
     <>
