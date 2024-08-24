@@ -4,7 +4,7 @@ export function middleware(request: NextRequest) {
   const nonce = Buffer.from(crypto.randomUUID()).toString('base64')
   const cspHeader = `
     default-src 'self';
-    script-src 'self' 'nonce-${nonce}' https://loriboiler.prismic.io/ https://static.cdn.prismic.io/ 'unsafe-inline' 'strict-dynamic';
+    script-src 'self' 'nonce-${nonce}' https://loriboiler.prismic.io/ https://static.cdn.prismic.io/ https://www.googletagmanager.com/ 'strict-dynamic';
     style-src 'self' 'unsafe-inline';
     img-src 'self' blob: data: images.prismic.io images.unsplash.com prismic-io.s3.amazonaws.com;
     font-src 'self' 'nonce-${nonce}';
@@ -14,6 +14,7 @@ export function middleware(request: NextRequest) {
     frame-ancestors 'none';
     frame-src 'self' https://loriboiler.prismic.io/ https://www.google.com/;
     upgrade-insecure-requests;
+    connect-src 'self' https://www.google-analytics.com/;
 `
   // Replace newline characters and spaces
   const contentSecurityPolicyHeaderValue = cspHeader
