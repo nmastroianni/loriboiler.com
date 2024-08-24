@@ -12,6 +12,7 @@ import { notFound } from 'next/navigation'
 import { HiTag } from 'react-icons/hi'
 import { Graph } from 'schema-dts'
 import { TagDocument } from '../../../../prismicio-types'
+import { headers } from 'next/headers'
 
 type Params = { uid: string }
 
@@ -76,12 +77,13 @@ export default async function Page({ params }: { params: Params }) {
       },
     ],
   }
-
+  const nonce = headers().get('x-nonce') || undefined
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        nonce={nonce}
       />
       <section
         className={cn(
