@@ -523,76 +523,86 @@ export type AllDocumentTypes =
   | TestimonialDocument
 
 /**
- * Primary content in *Accordion → Primary*
+ * Item in *Accordion → Default → Primary → Accordion Items*
  */
-export interface AccordionSliceDefaultPrimary {
+export interface AccordionSliceDefaultPrimaryAccordionItemsItem {
   /**
-   * Title field in *Accordion → Primary*
-   *
-   * - **Field Type**: Title
-   * - **Placeholder**: *None*
-   * - **API ID Path**: accordion.primary.title
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  title: prismic.TitleField
-}
-
-/**
- * Primary content in *Accordion → Items*
- */
-export interface AccordionSliceDefaultItem {
-  /**
-   * Trigger field in *Accordion → Items*
+   * Heading field in *Accordion → Default → Primary → Accordion Items*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: accordion.items[].trigger
+   * - **API ID Path**: accordion.default.primary.accordion_items[].heading
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  trigger: prismic.KeyTextField
+  heading: prismic.KeyTextField
 
   /**
-   * Content field in *Accordion → Items*
+   * Content field in *Accordion → Default → Primary → Accordion Items*
    *
    * - **Field Type**: Rich Text
-   * - **Placeholder**: This text answers the trigger question
-   * - **API ID Path**: accordion.items[].content
+   * - **Placeholder**: *None*
+   * - **API ID Path**: accordion.default.primary.accordion_items[].content
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   content: prismic.RichTextField
 
   /**
-   * Link field in *Accordion → Items*
+   * Link field in *Accordion → Default → Primary → Accordion Items*
    *
    * - **Field Type**: Link
-   * - **Placeholder**: Optionally include a button or link
-   * - **API ID Path**: accordion.items[].link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: accordion.default.primary.accordion_items[].link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   link: prismic.LinkField
 
   /**
-   * Button Label field in *Accordion → Items*
+   * Button Label field in *Accordion → Default → Primary → Accordion Items*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: What should the button/link say?
-   * - **API ID Path**: accordion.items[].button_label
+   * - **Placeholder**: *None*
+   * - **API ID Path**: accordion.default.primary.accordion_items[].button_label
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   button_label: prismic.KeyTextField
 
   /**
-   * Button Variant field in *Accordion → Items*
+   * Button Variant field in *Accordion → Default → Primary → Accordion Items*
    *
    * - **Field Type**: Select
-   * - **Placeholder**: What type of button do you want?
-   * - **Default Value**: default
-   * - **API ID Path**: accordion.items[].button_variant
+   * - **Placeholder**: *None*
+   * - **API ID Path**: accordion.default.primary.accordion_items[].button_variant
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   button_variant: prismic.SelectField<
-    'default' | 'secondary' | 'outline' | 'ghost' | 'link' | 'destructive',
-    'filled'
+    'default' | 'secondary' | 'outline' | 'ghost' | 'link' | 'destructive'
+  >
+}
+
+/**
+ * Primary content in *Accordion → Default → Primary*
+ */
+export interface AccordionSliceDefaultPrimary {
+  /**
+   * Title field in *Accordion → Default → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: accordion.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.TitleField
+
+  /**
+   * Accordion Items field in *Accordion → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: accordion.default.primary.accordion_items[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  accordion_items: prismic.GroupField<
+    Simplify<AccordionSliceDefaultPrimaryAccordionItemsItem>
   >
 }
 
@@ -606,7 +616,7 @@ export interface AccordionSliceDefaultItem {
 export type AccordionSliceDefault = prismic.SharedSliceVariation<
   'default',
   Simplify<AccordionSliceDefaultPrimary>,
-  Simplify<AccordionSliceDefaultItem>
+  never
 >
 
 /**
@@ -627,25 +637,25 @@ export type AccordionSlice = prismic.SharedSlice<
 >
 
 /**
- * Primary content in *Carousel → Primary*
+ * Primary content in *Carousel → Default → Primary*
  */
 export interface CarouselSliceDefaultPrimary {
   /**
-   * Heading field in *Carousel → Primary*
+   * Heading field in *Carousel → Default → Primary*
    *
    * - **Field Type**: Title
    * - **Placeholder**: Optional section heading
-   * - **API ID Path**: carousel.primary.heading
+   * - **API ID Path**: carousel.default.primary.heading
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   heading: prismic.TitleField
 
   /**
-   * Description field in *Carousel → Primary*
+   * Description field in *Carousel → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: Option section description
-   * - **API ID Path**: carousel.primary.description
+   * - **API ID Path**: carousel.default.primary.description
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   description: prismic.RichTextField
@@ -697,15 +707,15 @@ export type CarouselSlice = prismic.SharedSlice<
 >
 
 /**
- * Primary content in *Content → Primary*
+ * Primary content in *Content → Default → Primary*
  */
 export interface ContentSliceDefaultPrimary {
   /**
-   * Content field in *Content → Primary*
+   * Content field in *Content → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: content.primary.content
+   * - **API ID Path**: content.default.primary.content
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   content: prismic.RichTextField
@@ -739,66 +749,66 @@ type ContentSliceVariation = ContentSliceDefault
 export type ContentSlice = prismic.SharedSlice<'content', ContentSliceVariation>
 
 /**
- * Primary content in *Hero → Primary*
+ * Primary content in *Hero → Default → Primary*
  */
 export interface HeroSliceDefaultPrimary {
   /**
-   * Heading field in *Hero → Primary*
+   * Heading field in *Hero → Default → Primary*
    *
    * - **Field Type**: Title
    * - **Placeholder**: Hero heading
-   * - **API ID Path**: hero.primary.heading
+   * - **API ID Path**: hero.default.primary.heading
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   heading: prismic.TitleField
 
   /**
-   * Description field in *Hero → Primary*
+   * Description field in *Hero → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: Optionally describe your CTA
-   * - **API ID Path**: hero.primary.description
+   * - **API ID Path**: hero.default.primary.description
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   description: prismic.RichTextField
 
   /**
-   * Button Link field in *Hero → Primary*
+   * Button Link field in *Hero → Default → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
-   * - **API ID Path**: hero.primary.button_link
+   * - **API ID Path**: hero.default.primary.button_link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   button_link: prismic.LinkField
 
   /**
-   * Button Text field in *Hero → Primary*
+   * Button Text field in *Hero → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: hero.primary.button_text
+   * - **API ID Path**: hero.default.primary.button_text
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   button_text: prismic.KeyTextField
 
   /**
-   * Background Image field in *Hero → Primary*
+   * Background Image field in *Hero → Default → Primary*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: hero.primary.background_image
+   * - **API ID Path**: hero.default.primary.background_image
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   background_image: prismic.ImageField<never>
 
   /**
-   * Image Location field in *Hero → Primary*
+   * Image Location field in *Hero → Default → Primary*
    *
    * - **Field Type**: Boolean
    * - **Placeholder**: *None*
    * - **Default Value**: false
-   * - **API ID Path**: hero.primary.image_location
+   * - **API ID Path**: hero.default.primary.image_location
    * - **Documentation**: https://prismic.io/docs/field#boolean
    */
   image_location: prismic.BooleanField
@@ -832,46 +842,46 @@ type HeroSliceVariation = HeroSliceDefault
 export type HeroSlice = prismic.SharedSlice<'hero', HeroSliceVariation>
 
 /**
- * Primary content in *ImageWithText → Primary*
+ * Primary content in *ImageWithText → Default → Primary*
  */
 export interface ImageWithTextSliceDefaultPrimary {
   /**
-   * Image field in *ImageWithText → Primary*
+   * Image field in *ImageWithText → Default → Primary*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: image_with_text.primary.image
+   * - **API ID Path**: image_with_text.default.primary.image
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   image: prismic.ImageField<never>
 
   /**
-   * Heading field in *ImageWithText → Primary*
+   * Heading field in *ImageWithText → Default → Primary*
    *
    * - **Field Type**: Title
    * - **Placeholder**: Optional heading for section
-   * - **API ID Path**: image_with_text.primary.heading
+   * - **API ID Path**: image_with_text.default.primary.heading
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   heading: prismic.TitleField
 
   /**
-   * Text field in *ImageWithText → Primary*
+   * Text field in *ImageWithText → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: image_with_text.primary.text
+   * - **API ID Path**: image_with_text.default.primary.text
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   text: prismic.RichTextField
 
   /**
-   * Image Location field in *ImageWithText → Primary*
+   * Image Location field in *ImageWithText → Default → Primary*
    *
    * - **Field Type**: Boolean
    * - **Placeholder**: *None*
    * - **Default Value**: true
-   * - **API ID Path**: image_with_text.primary.image_location
+   * - **API ID Path**: image_with_text.default.primary.image_location
    * - **Documentation**: https://prismic.io/docs/field#boolean
    */
   image_location: prismic.BooleanField
@@ -908,77 +918,77 @@ export type ImageWithTextSlice = prismic.SharedSlice<
 >
 
 /**
- * Primary content in *Newsletter → Primary*
+ * Primary content in *Newsletter → Default → Primary*
  */
 export interface NewsletterSliceDefaultPrimary {
   /**
-   * Title field in *Newsletter → Primary*
+   * Title field in *Newsletter → Default → Primary*
    *
    * - **Field Type**: Title
    * - **Placeholder**: Enter a heading
-   * - **API ID Path**: newsletter.primary.title
+   * - **API ID Path**: newsletter.default.primary.title
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   title: prismic.TitleField
 
   /**
-   * Description field in *Newsletter → Primary*
+   * Description field in *Newsletter → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: Describe the newsletter
-   * - **API ID Path**: newsletter.primary.description
+   * - **API ID Path**: newsletter.default.primary.description
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   description: prismic.RichTextField
 
   /**
-   * Form Location field in *Newsletter → Primary*
+   * Form Location field in *Newsletter → Default → Primary*
    *
    * - **Field Type**: Boolean
    * - **Placeholder**: *None*
    * - **Default Value**: true
-   * - **API ID Path**: newsletter.primary.form_location
+   * - **API ID Path**: newsletter.default.primary.form_location
    * - **Documentation**: https://prismic.io/docs/field#boolean
    */
   form_location: prismic.BooleanField
 
   /**
-   * First Name Placeholder Text field in *Newsletter → Primary*
+   * First Name Placeholder Text field in *Newsletter → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: newsletter.primary.first_name_placeholder_text
+   * - **API ID Path**: newsletter.default.primary.first_name_placeholder_text
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   first_name_placeholder_text: prismic.KeyTextField
 
   /**
-   * Email Placeholder Text field in *Newsletter → Primary*
+   * Email Placeholder Text field in *Newsletter → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: newsletter.primary.email_placeholder_text
+   * - **API ID Path**: newsletter.default.primary.email_placeholder_text
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   email_placeholder_text: prismic.KeyTextField
 
   /**
-   * Button Text field in *Newsletter → Primary*
+   * Button Text field in *Newsletter → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: newsletter.primary.button_text
+   * - **API ID Path**: newsletter.default.primary.button_text
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   button_text: prismic.KeyTextField
 
   /**
-   * Button Color field in *Newsletter → Primary*
+   * Button Color field in *Newsletter → Default → Primary*
    *
    * - **Field Type**: Select
    * - **Placeholder**: Select a button color
    * - **Default Value**: default
-   * - **API ID Path**: newsletter.primary.button_color
+   * - **API ID Path**: newsletter.default.primary.button_color
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   button_color: prismic.SelectField<
@@ -1018,15 +1028,15 @@ export type NewsletterSlice = prismic.SharedSlice<
 >
 
 /**
- * Primary content in *Steps → Primary*
+ * Primary content in *Steps → Default → Primary*
  */
 export interface StepsSliceDefaultPrimary {
   /**
-   * Background Image field in *Steps → Primary*
+   * Background Image field in *Steps → Default → Primary*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: steps.primary.background_image
+   * - **API ID Path**: steps.default.primary.background_image
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   background_image: prismic.ImageField<never>
@@ -1143,8 +1153,8 @@ declare module '@prismicio/client' {
       TestimonialDocumentData,
       AllDocumentTypes,
       AccordionSlice,
+      AccordionSliceDefaultPrimaryAccordionItemsItem,
       AccordionSliceDefaultPrimary,
-      AccordionSliceDefaultItem,
       AccordionSliceVariation,
       AccordionSliceDefault,
       CarouselSlice,
