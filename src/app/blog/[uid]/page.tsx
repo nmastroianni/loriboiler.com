@@ -1,18 +1,17 @@
+import Heading from '@/components/Heading'
+import { PrismicRichText } from '@/components/PrismicRichText'
+import { cn } from '@/lib/utils/cn'
+import { createClient } from '@/prismicio'
+import { components } from '@/slices'
+import * as prismic from '@prismicio/client'
+import { PrismicNextImage } from '@prismicio/next'
+import { SliceZone } from '@prismicio/react'
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { SliceZone } from '@prismicio/react'
-import * as prismic from '@prismicio/client'
-import { createClient } from '@/prismicio'
-import { components } from '@/slices'
-import { Graph } from 'schema-dts'
-import Section from '@/components/Section'
-import { PrismicNextImage } from '@prismicio/next'
-import { cn } from '@/lib/utils/cn'
-import { PrismicRichText } from '@/components/PrismicRichText'
-import Heading from '@/components/Heading'
-import { TagDocument } from '../../../../prismicio-types'
 import { HiTag } from 'react-icons/hi'
+import { Graph } from 'schema-dts'
+import { TagDocument } from '../../../../prismicio-types'
 
 type Params = { uid: string }
 
@@ -86,7 +85,7 @@ export default async function Page({ params }: { params: Params }) {
       />
       <section
         className={cn(
-          'bg-primary relative mb-8 flex items-center justify-center py-36 lg:py-44 xl:py-56 2xl:py-72',
+          'relative mb-8 flex items-center justify-center bg-primary py-36 lg:py-44 xl:py-56 2xl:py-72',
         )}
       >
         {prismic.isFilled.image(page.data.featured_image) && (
@@ -106,14 +105,14 @@ export default async function Page({ params }: { params: Params }) {
                 <Heading
                   as="h1"
                   size="7xl"
-                  className="z-10 text-color-base lg:text-center"
+                  className="text-color-base z-10 lg:text-center"
                 >
                   {children}
                 </Heading>
               ),
             }}
           />
-          <p className="z-10 text-center text-sm font-medium uppercase text-color-base">
+          <p className="text-color-base z-10 text-center text-sm font-medium uppercase">
             {pubDate}
           </p>
           {prismic.isFilled.group(page.data.custom_tags) ? (
