@@ -33,22 +33,22 @@ const Accordion = ({ slice }: AccordionProps): JSX.Element => {
           <hr className="my-4" />
         </>
       )}
-      {slice.items.length > 0 && (
+      {isFilled.group(slice.primary.accordion_items) && (
         <UiAccordion
           type="single"
           className="prose mx-auto max-w-screen-sm"
           collapsible
           defaultValue="item-0"
         >
-          {slice.items.map((item, index) => {
+          {slice.primary.accordion_items.map((item, index) => {
             if (
-              isFilled.keyText(item.trigger) &&
+              isFilled.keyText(item.heading) &&
               isFilled.richText(item.content)
             ) {
               return (
                 <AccordionItem key={slice.id + index} value={`item-${index}`}>
                   <AccordionTrigger className="font-semibold">
-                    {item.trigger}
+                    {item.heading}
                   </AccordionTrigger>
                   <AccordionContent className="prose-p:my-2 prose-a:no-underline">
                     <PrismicRichText

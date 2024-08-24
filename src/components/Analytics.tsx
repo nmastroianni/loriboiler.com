@@ -5,7 +5,7 @@ import { usePathname, useSearchParams } from 'next/navigation'
 import Script from 'next/script'
 import { useEffect } from 'react'
 
-export default function Analytics() {
+export default function Analytics({ nonce }: { nonce: string | undefined }) {
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
@@ -42,6 +42,7 @@ export default function Analytics() {
         }
   `,
         }}
+        nonce={nonce}
       />
       <Script
         id="gtm-script"

@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Script from 'next/script'
 import { Button } from '@/components/ui/button'
 
-export default function Consent() {
+export default function Consent({ nonce }: { nonce: string | undefined }) {
   const [consent, setConsent] = React.useState<boolean>(false)
   const [hideBanner, setHideBanner] = React.useState<boolean>(true)
 
@@ -54,6 +54,7 @@ export default function Consent() {
               fbq('consent', 'grant');
             `,
           }}
+          nonce={nonce}
         />
       )}
       <AnimatePresence>
@@ -70,7 +71,7 @@ export default function Consent() {
             }}
             id="consent-banner"
             className={cn(
-              'bg-accent fixed bottom-0 z-10 grid w-full bg-opacity-95 p-3 md:grid-cols-5',
+              'fixed bottom-0 z-10 grid w-full bg-accent bg-opacity-95 p-3 md:grid-cols-5',
             )}
           >
             <p className="prose prose-sm mx-auto my-4 px-6 text-left md:col-span-3">
@@ -87,7 +88,7 @@ export default function Consent() {
                   setHideBanner(true)
                 }}
               >
-                <HiX className="text-background h-6 w-6" />
+                <HiX className="h-6 w-6 text-background" />
                 <span className="sr-only">Close</span>
               </button>
               <Button

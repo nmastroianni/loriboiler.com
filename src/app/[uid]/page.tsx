@@ -9,6 +9,7 @@ import { Graph } from 'schema-dts'
 import Section from '@/components/Section'
 import BlogCard from '@/components/BlogCard'
 import Pagination from '@/components/Pagination'
+import { headers } from 'next/headers'
 
 type Params = { uid: string }
 type SearchParams = {
@@ -70,12 +71,13 @@ export default async function Page({
       },
     ],
   }
-
+  const nonce = headers().get('x-nonce') || undefined
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        nonce={nonce}
       />
       {heroes.length < 1 && (
         <div className="prose mx-auto lg:prose-lg xl:prose-xl 2xl:prose-2xl">

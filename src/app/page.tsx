@@ -3,6 +3,7 @@ import { SliceZone } from '@prismicio/react'
 import { createClient } from '@/prismicio'
 import { components } from '@/slices'
 import { Graph } from 'schema-dts'
+import { headers } from 'next/headers'
 
 export default async function Page() {
   const client = createClient()
@@ -84,12 +85,13 @@ export default async function Page() {
       },
     ],
   }
-
+  const nonce = headers().get('x-nonce') || undefined
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        nonce={nonce}
       />
       <SliceZone slices={page.data.slices} components={components} />
     </>

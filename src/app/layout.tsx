@@ -9,6 +9,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Analytics from '@/components/Analytics'
 import Consent from '@/components/Consent'
+import { headers } from 'next/headers'
 
 /**
  * Heading & Body fonts
@@ -48,6 +49,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const nonce = headers().get('x-nonce') || undefined
   return (
     <html lang="en">
       <body
@@ -55,17 +57,17 @@ export default function RootLayout({
           'flex min-h-screen flex-col justify-between',
           playfairDisplay.variable,
           openSans.variable,
-          `text-primary-foreground font-opensans`,
+          `font-opensans text-primary-foreground`,
         )}
       >
         <Suspense>
-          <Analytics />
+          <Analytics nonce={nonce} />
         </Suspense>
 
         <Header />
         {children}
         <Footer />
-        <Consent />
+        <Consent nonce={nonce} />
         <PrismicPreview repositoryName={repositoryName} />
       </body>
     </html>
