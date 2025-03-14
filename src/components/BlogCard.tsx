@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { cn } from '@/lib/utils/cn'
 import { PostDocument, TagDocument } from '../../prismicio-types'
 import Link from 'next/link'
@@ -28,7 +28,7 @@ export default function BlogCard({
   return (
     <Comp
       className={cn(
-        'my-8 block overflow-hidden rounded-lg border border-color-secondary lg:my-12',
+        'border-color-secondary my-8 block overflow-hidden rounded-lg border lg:my-12',
         className,
       )}
       {...restProps}
@@ -47,7 +47,7 @@ export default function BlogCard({
           <PrismicRichText
             field={post.data.title}
             components={{
-              heading1: ({ children }) => (
+              heading1: ({ children }: { children: ReactNode }) => (
                 <Heading as="h1" size="3xl" className="text-left">
                   {children}
                 </Heading>
@@ -58,7 +58,7 @@ export default function BlogCard({
           <Button asChild>
             <Link
               href={`${post.url}`}
-              className="inline-block rounded bg-color-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-color-base transition duration-150 ease-in hover:bg-color-accent hover:text-color-neutral hover:shadow hover:shadow-color-accent"
+              className="bg-color-primary text-color-base hover:bg-color-accent hover:text-color-neutral hover:shadow-color-accent inline-block rounded px-6 pt-2.5 pb-2 text-xs leading-normal font-medium uppercase transition duration-150 ease-in hover:shadow-sm"
             >
               Continue Reading
             </Link>
@@ -72,7 +72,7 @@ export default function BlogCard({
                   <li className="py-4" key={td.id}>
                     <Link href={td.url || '#'}>
                       <HiTag
-                        className={`mr-1 inline h-5 w-5 text-color-accent`}
+                        className={`text-color-accent mr-1 inline h-5 w-5`}
                       />
                       {td.uid}
                     </Link>

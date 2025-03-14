@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button'
 import { Content, isFilled } from '@prismicio/client'
 import { PrismicNextLink } from '@prismicio/next'
 import { SliceComponentProps } from '@prismicio/react'
+import { JSX, ReactNode } from 'react'
 
 /**
  * Props for `Accordion`.
@@ -36,7 +37,7 @@ const Accordion = ({ slice }: AccordionProps): JSX.Element => {
       {isFilled.group(slice.primary.accordion_items) && (
         <UiAccordion
           type="single"
-          className="prose mx-auto max-w-screen-sm"
+          className="prose mx-auto max-w-(--breakpoint-sm)"
           collapsible
           defaultValue="item-0"
         >
@@ -54,7 +55,7 @@ const Accordion = ({ slice }: AccordionProps): JSX.Element => {
                     <PrismicRichText
                       field={item.content}
                       components={{
-                        paragraph: ({ children }) => (
+                        paragraph: ({ children }: { children: ReactNode }) => (
                           <p className="prose lg:prose-lg">{children}</p>
                         ),
                       }}

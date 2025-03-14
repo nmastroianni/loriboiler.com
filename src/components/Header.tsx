@@ -15,7 +15,7 @@ export default async function Header() {
     <Section
       as="header"
       width="lg"
-      className="shadow-accent justify-start py-4 shadow-sm md:py-4 lg:py-6"
+      className="shadow-accent justify-start py-4 shadow-xs md:py-4 lg:py-6"
     >
       <div className="flex items-center justify-between">
         <Link href="/">

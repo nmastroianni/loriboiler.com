@@ -21,13 +21,15 @@ export default async function Page({
   params,
   searchParams,
 }: {
-  params: Params
-  searchParams: SearchParams
+  params: Promise<Params>
+  searchParams: Promise<SearchParams>
 }) {
+  const { uid } = await params
+  const searchParamsList = await searchParams
   const client = createClient()
   // set pageNumber to the searchParam page number or 1
-  const pageNumber = Number(searchParams['page']) || 1
-  const page = await client.getByUID('tag', params.uid).catch(() => notFound())
+  const pageNumber = Number(searchParamsList['page']) || 1
+  const page = await client.getByUID('tag', uid).catch(() => notFound())
   /**
    * get posts and then filter them based on the page.id
    */
@@ -102,10 +104,11 @@ export default async function Page({
 export async function generateMetadata({
   params,
 }: {
-  params: Params
+  params: Promise<Params>
 }): Promise<Metadata> {
+  const { uid } = await params
   const client = createClient()
-  const page = await client.getByUID('tag', params.uid).catch(() => notFound())
+  const page = await client.getByUID('tag', uid).catch(() => notFound())
   const settings = await client.getSingle('settings')
 
   return {

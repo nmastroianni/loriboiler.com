@@ -71,7 +71,7 @@ export default function Consent({ nonce }: { nonce: string | undefined }) {
             }}
             id="consent-banner"
             className={cn(
-              'fixed bottom-0 z-10 grid w-full bg-accent bg-opacity-95 p-3 md:grid-cols-5',
+              'bg-accent/95 fixed bottom-0 z-10 grid w-full p-3 md:grid-cols-5',
             )}
           >
             <p className="prose prose-sm mx-auto my-4 px-6 text-left md:col-span-3">
@@ -83,12 +83,12 @@ export default function Consent({ nonce }: { nonce: string | undefined }) {
             </p>
             <div className="my-4 flex items-center justify-evenly md:col-span-2">
               <button
-                className="absolute right-2 top-2"
+                className="absolute top-2 right-2"
                 onClick={e => {
                   setHideBanner(true)
                 }}
               >
-                <HiX className="h-6 w-6 text-background" />
+                <HiX className="text-background h-6 w-6" />
                 <span className="sr-only">Close</span>
               </button>
               <Button

@@ -4,6 +4,7 @@ import { PrismicRichText, SliceComponentProps } from '@prismicio/react'
 import Slider from '@/components/Slider'
 import { TestimonialDocument } from '../../../prismicio-types'
 import Section from '@/components/Section'
+import { JSX } from 'react'
 
 /**
  * Props for `Carousel`.

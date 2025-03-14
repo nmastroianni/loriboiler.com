@@ -20,12 +20,14 @@ export default async function Page({
   params,
   searchParams,
 }: {
-  params: Params
-  searchParams: SearchParams
+  params: Promise<Params>
+  searchParams: Promise<SearchParams>
 }) {
+  const { uid } = await params
+  const searchParamsList = await searchParams
   const client = createClient()
-  const pageNumber = Number(searchParams['page']) || 1
-  const page = await client.getByUID('page', params.uid).catch(() => notFound())
+  const pageNumber = Number(searchParamsList['page']) || 1
+  const page = await client.getByUID('page', uid).catch(() => notFound())
   const heroes = page.data.slices.filter(slice => slice.slice_type === 'hero')
   let posts
   if (page.uid === 'blog') {
@@ -71,7 +73,7 @@ export default async function Page({
       },
     ],
   }
-  const nonce = headers().get('x-nonce') || undefined
+  const nonce = (await headers()).get('x-nonce') || undefined
   return (
     <>
       <script
@@ -80,7 +82,7 @@ export default async function Page({
         nonce={nonce}
       />
       {heroes.length < 1 && (
-        <div className="prose mx-auto lg:prose-lg xl:prose-xl 2xl:prose-2xl">
+        <div className="prose lg:prose-lg xl:prose-xl 2xl:prose-2xl mx-auto">
           <PrismicRichText field={page.data.title} />
         </div>
       )}
@@ -101,7 +103,7 @@ export default async function Page({
               })}
             </ul>
           ) : (
-            <p className="prose mx-auto lg:prose-lg xl:prose-xl">
+            <p className="prose lg:prose-lg xl:prose-xl mx-auto">
               No posts have been published yet. Please check back again soon!
             </p>
           )}
@@ -122,10 +124,11 @@ export default async function Page({
 export async function generateMetadata({
   params,
 }: {
-  params: Params
+  params: Promise<Params>
 }): Promise<Metadata> {
+  const { uid } = await params
   const client = createClient()
-  const page = await client.getByUID('page', params.uid).catch(() => notFound())
+  const page = await client.getByUID('page', uid).catch(() => notFound())
   const settings = await client.getSingle('settings')
 
   return {
