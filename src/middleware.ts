@@ -2,12 +2,12 @@ import { NextRequest, NextResponse } from 'next/server'
 
 export function middleware(request: NextRequest) {
   const nonce = Buffer.from(crypto.randomUUID()).toString('base64')
-  const isSliceSimulator =
-    (request.nextUrl.pathname === '/slice-simulator' &&
-      request.nextUrl.host === 'loriboiler.com') ||
-    'localhost:3000'
+  const isApprovedHost =
+    request.nextUrl.host === 'loriboiler.com' || 'localhost:3000'
+  const isSliceSimulator = request.nextUrl.pathname === '/slice-simulator'
+
   let cspHeader
-  if (isSliceSimulator) {
+  if (isSliceSimulator && isApprovedHost) {
     cspHeader = `
       default-src 'self';
       script-src 'self' 'nonce-${nonce}' https://loriboiler.prismic.io/ https://static.cdn.prismic.io/ https://www.googletagmanager.com/ 'strict-dynamic' 'unsafe-eval';
@@ -44,7 +44,8 @@ export function middleware(request: NextRequest) {
     .trim()
 
   const requestHeaders = new Headers(request.headers)
-  if (!isSliceSimulator) requestHeaders.set('x-nonce', nonce)
+  if (request.nextUrl.hostname !== 'localhost')
+    requestHeaders.set('x-nonce', nonce)
 
   requestHeaders.set(
     'Content-Security-Policy',
