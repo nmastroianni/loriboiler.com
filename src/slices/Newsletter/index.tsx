@@ -4,6 +4,7 @@ import Section from '@/components/Section'
 import { cn } from '@/lib/utils/cn'
 import { PrismicRichText } from '@/components/PrismicRichText'
 import NewsletterForm from '@/components/NewsletterForm'
+import { JSX } from 'react'
 
 /**
  * Props for `Newsletter`.
@@ -20,9 +21,9 @@ const Newsletter = ({ slice }: NewsletterProps): JSX.Element => {
       data-slice-variation={slice.variation}
       width="xl"
     >
-      <div className="mx-auto grid max-w-screen-xl px-4  md:gap-x-4  lg:grid-cols-2 ">
+      <div className="mx-auto grid max-w-(--breakpoint-xl) px-4 md:gap-x-4 lg:grid-cols-2">
         <div
-          className={cn('prose mx-auto lg:prose-lg xl:prose-xl', {
+          className={cn('prose lg:prose-lg xl:prose-xl mx-auto', {
             'order-last': !slice.primary.form_location,
           })}
         >

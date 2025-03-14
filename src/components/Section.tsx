@@ -26,10 +26,10 @@ export default function Section({
       <div
         className={cn('mx-auto w-full', {
           'w-full': width === 'full',
-          'max-w-screen-2xl': width === '2xl',
-          'max-w-screen-xl': width === 'xl',
-          'max-w-screen-lg': width === 'lg',
-          'max-w-screen-md': width === 'md',
+          'max-w-(--breakpoint-2xl)': width === '2xl',
+          'max-w-(--breakpoint-xl)': width === 'xl',
+          'max-w-(--breakpoint-lg)': width === 'lg',
+          'max-w-(--breakpoint-md)': width === 'md',
         })}
       >
         {children}

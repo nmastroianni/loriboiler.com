@@ -13,12 +13,14 @@ import { HiTag } from 'react-icons/hi'
 import { Graph } from 'schema-dts'
 import { TagDocument } from '../../../../prismicio-types'
 import { headers } from 'next/headers'
+import { ReactNode } from 'react'
 
 type Params = { uid: string }
 
-export default async function Page({ params }: { params: Params }) {
+export default async function Page({ params }: { params: Promise<Params> }) {
+  const { uid } = await params
   const client = createClient()
-  const page = await client.getByUID('post', params.uid).catch(() => notFound())
+  const page = await client.getByUID('post', uid).catch(() => notFound())
   const settings = await client.getSingle('settings')
   let pubDate
   page.data.date_published
@@ -77,7 +79,7 @@ export default async function Page({ params }: { params: Params }) {
       },
     ],
   }
-  const nonce = headers().get('x-nonce') || undefined
+  const nonce = (await headers()).get('x-nonce') || undefined
   return (
     <>
       <script
@@ -87,7 +89,7 @@ export default async function Page({ params }: { params: Params }) {
       />
       <section
         className={cn(
-          'relative mb-8 flex items-center justify-center bg-primary py-36 lg:py-44 xl:py-56 2xl:py-72',
+          'bg-primary relative mb-8 flex items-center justify-center py-36 lg:py-44 xl:py-56 2xl:py-72',
         )}
       >
         {prismic.isFilled.image(page.data.featured_image) && (
@@ -99,11 +101,11 @@ export default async function Page({ params }: { params: Params }) {
             priority
           />
         )}
-        <div className="z-10 mx-auto flex max-w-screen-lg flex-col px-4">
+        <div className="z-10 mx-auto flex max-w-(--breakpoint-lg) flex-col px-4">
           <PrismicRichText
             field={page.data.title}
             components={{
-              heading1: ({ children }) => (
+              heading1: ({ children }: { children: ReactNode }) => (
                 <Heading
                   as="h1"
                   size="7xl"
@@ -143,10 +145,11 @@ export default async function Page({ params }: { params: Params }) {
 export async function generateMetadata({
   params,
 }: {
-  params: Params
+  params: Promise<Params>
 }): Promise<Metadata> {
+  const { uid } = await params
   const client = createClient()
-  const page = await client.getByUID('post', params.uid).catch(() => notFound())
+  const page = await client.getByUID('post', uid).catch(() => notFound())
   const settings = await client.getSingle('settings')
 
   return {

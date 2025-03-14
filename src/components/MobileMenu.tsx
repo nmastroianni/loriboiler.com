@@ -15,7 +15,7 @@ export default function MobileMenu(navigation: MobileMenuProps) {
   return (
     <Menu as="div" className="relative z-30 inline-block text-left lg:hidden">
       <div>
-        <Menu.Button className="focus-visible:ring-secondary inline-flex w-full  justify-center px-4 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75">
+        <Menu.Button className="focus-visible:ring-secondary inline-flex w-full  justify-center px-4 py-2 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-opacity-75">
           <HiMenu className="text-secondary h-8 w-8" />
           <span className="sr-only">Open Menu</span>
         </Menu.Button>
@@ -29,7 +29,7 @@ export default function MobileMenu(navigation: MobileMenuProps) {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="ring-accent absolute right-5 mt-2 w-56  origin-top-right rounded-md bg-neutral-100 shadow-lg ring-1 ring-opacity-5 focus:outline-none ">
+        <Menu.Items className="ring-accent absolute right-5 mt-2 w-56  origin-top-right rounded-md bg-neutral-100 shadow-lg ring-1 ring-opacity-5 focus:outline-hidden ">
           <div className="p-1">
             {navigation.navigation.map((item, i) => {
               if (item.label) {

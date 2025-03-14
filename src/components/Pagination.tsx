@@ -25,7 +25,7 @@ const Pagination: FC<PaginationProps> = ({
           className={cn(
             'inline-block rounded bg-color-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-color-base',
             {
-              'ease-inhover:bg-emerald-900 transition duration-150 hover:shadow hover:shadow-color-primary':
+              'ease-inhover:bg-emerald-900 transition duration-150 hover:shadow-sm hover:shadow-color-primary':
                 hasPrevPage,
               'bg-color-neutral': !hasPrevPage,
             },
@@ -42,7 +42,7 @@ const Pagination: FC<PaginationProps> = ({
           className={cn(
             'inline-block rounded bg-color-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-color-base',
             {
-              'transition duration-150 ease-in hover:bg-color-accent hover:text-color-neutral hover:shadow hover:shadow-color-accent':
+              'transition duration-150 ease-in hover:bg-color-accent hover:text-color-neutral hover:shadow-sm hover:shadow-color-accent':
                 hasNextPage,
               'bg-color-neutral': !hasNextPage,
             },

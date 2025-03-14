@@ -192,7 +192,7 @@ const NewsletterForm = (data: NewsletterSlice): React.JSX.Element => {
 
           <div>
             <SubmitButton text={button_text} variant={button_color} />
-            <p className="prose-a:text-primary-content prose prose-sm mt-3 prose-a:no-underline hover:prose-a:underline">
+            <p className="prose-a:text-primary-content prose prose-sm mt-3 prose-a:no-underline prose-a:hover:underline">
               This site is protected by reCAPTCHA and the{' '}
               <a href="https://policies.google.com/privacy">
                 Google Privacy Policy

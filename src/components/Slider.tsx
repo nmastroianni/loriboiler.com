@@ -2,7 +2,7 @@
 import Section from '@/components/Section'
 import { CarouselSlice, TestimonialDocument } from '../../prismicio-types'
 import { motion, useTransform, useScroll } from 'framer-motion'
-import { useRef } from 'react'
+import { ReactNode, useRef } from 'react'
 import { FaQuoteLeft } from 'react-icons/fa'
 import { PrismicNextImage } from '@prismicio/next'
 import { PrismicRichText } from '@/components/PrismicRichText'
@@ -19,11 +19,11 @@ export default function Slider({ content, primary }: SliderProps) {
   return (
     <div ref={targetRef} className="relative h-[300vh]">
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
-        <div className="absolute left-1/2 top-16 w-full -translate-x-1/2 text-center">
+        <div className="absolute top-16 left-1/2 w-full -translate-x-1/2 text-center">
           <PrismicRichText
             field={primary.heading}
             components={{
-              heading2: ({ children }) => (
+              heading2: ({ children }: { children: ReactNode }) => (
                 <Heading as="h2" size="5xl" className="lg:text-center">
                   {children}
                 </Heading>
@@ -38,7 +38,7 @@ export default function Slider({ content, primary }: SliderProps) {
               return (
                 <div
                   key={item.id}
-                  className="grid w-[300px] gap-x-4 rounded-lg border shadow lg:w-[900px] lg:grid-cols-3"
+                  className="grid w-[300px] gap-x-4 rounded-lg border shadow-sm lg:w-[900px] lg:grid-cols-3"
                 >
                   <div className="col-span-1 hidden lg:block">
                     <PrismicNextImage
@@ -46,8 +46,8 @@ export default function Slider({ content, primary }: SliderProps) {
                       className="lg:rounded-l-lg"
                     />
                   </div>
-                  <blockquote className="prose relative col-span-2 flex flex-col justify-between p-6 lg:prose-lg xl:prose-xl">
-                    <FaQuoteLeft className="h-4 w-4 text-color-primary lg:h-12 lg:w-12" />
+                  <blockquote className="prose lg:prose-lg xl:prose-xl relative col-span-2 flex flex-col justify-between p-6">
+                    <FaQuoteLeft className="text-color-primary h-4 w-4 lg:h-12 lg:w-12" />
                     <PrismicRichText field={item.data.text} />
                     <footer>{'-' + item.data.attribution}</footer>
                   </blockquote>

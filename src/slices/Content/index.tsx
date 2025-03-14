@@ -2,6 +2,7 @@ import { Content as PrismicContent } from '@prismicio/client'
 import { SliceComponentProps } from '@prismicio/react'
 import Section from '@/components/Section'
 import { PrismicRichText } from '@/components/PrismicRichText'
+import { JSX } from 'react'
 /**
  * Props for `Content`.
  */
@@ -17,7 +18,7 @@ const Content = ({ slice }: ContentProps): JSX.Element => {
       data-slice-variation={slice.variation}
       width="lg"
     >
-      <div className="prose mx-auto lg:prose-lg">
+      <div className="prose lg:prose-lg mx-auto">
         <PrismicRichText field={slice.primary.content} />
       </div>
     </Section>

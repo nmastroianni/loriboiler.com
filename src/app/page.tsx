@@ -85,7 +85,7 @@ export default async function Page() {
       },
     ],
   }
-  const nonce = headers().get('x-nonce') || undefined
+  const nonce = (await headers()).get('x-nonce') || undefined
   return (
     <>
       <script

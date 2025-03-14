@@ -13,7 +13,7 @@ export default async function Footer() {
       as="footer"
       className={cn('text-muted-foreground bg-muted lg:text-lg')}
     >
-      <div className="mx-auto my-6 grid max-w-screen-lg place-items-center gap-8 lg:my-0 lg:grid-cols-2">
+      <div className="mx-auto my-6 grid max-w-(--breakpoint-lg) place-items-center gap-8 lg:my-0 lg:grid-cols-2">
         <div>
           {isFilled.link(settings.data.facebook_page) && (
             <PrismicNextLink field={settings.data.facebook_page}>

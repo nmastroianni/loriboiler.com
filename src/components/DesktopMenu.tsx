@@ -4,6 +4,7 @@ import { SettingsDocumentDataNavigationItem } from '../../prismicio-types'
 import { Button } from '@/components/ui/button'
 import { PrismicNextLink } from '@prismicio/next'
 import { cn } from '@/lib/utils'
+import { JSX } from 'react'
 
 type DesktopMenuProps = {
   navigation: Array<SettingsDocumentDataNavigationItem>

@@ -4,6 +4,7 @@ import { PrismicRichText } from '@/components/PrismicRichText'
 import Section from '@/components/Section'
 import { PrismicNextImage } from '@prismicio/next'
 import { cn } from '@/lib/utils/cn'
+import { JSX } from 'react'
 
 /**
  * Props for `ImageWithText`.
