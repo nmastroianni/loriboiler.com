@@ -25,6 +25,7 @@ export function middleware(request: NextRequest) {
     cspHeader = `
       default-src 'self';
       script-src 'self' 'nonce-${nonce}' https://loriboiler.prismic.io/ https://static.cdn.prismic.io/ https://www.googletagmanager.com/ 'strict-dynamic' 'unsafe-eval';
+      script-src-elem 'self' 'nonce-${nonce}' https://www.loriboiler.com https://loriboiler.prismic.io/ https://static.cdn.prismic.io/ https://www.googletagmanager.com/ http://localhost:3000/ https://prismic.io/;
       style-src 'self' 'unsafe-inline';
       img-src 'self' blob: data: images.prismic.io images.unsplash.com prismic-io.s3.amazonaws.com;
       font-src 'self' 'nonce-${nonce}';
